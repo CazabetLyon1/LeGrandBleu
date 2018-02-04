@@ -5,6 +5,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 :root{
     --bleu-neon: #00ffff;
     --bleu-neon-75: rgba(0, 255, 255, .75);
@@ -14,7 +15,7 @@
     --bleu-fond-75: rgba(0,7,37,.75);
     --bleu-fond-50: rgba(0,7,37,.5);
     --bleu-fond-25: rgba(0,7,37,.5);
-    --rouge-error: rgba(169, 66, 68);
+    --rouge-error: rgb(169, 66, 68);
     --rouge-error-75: rgba(169, 66, 68, .75);
     --rouge-error-50: rgba(169, 66, 68, .5);
     --rouge-error-25: rgba(169, 66, 68, .25);
@@ -23,12 +24,35 @@
     --2W-transition-35: .35s var(--2W-cubic);
 
     --shadow-neon:  0 0 10px var(--bleu-neon);
+    --shadow-neon-logo:  0 0 5px var(--bleu-neon), 0 0 10px var(--bleu-neon), 0 0 15px var(--bleu-neon), 0 0 20px var(--bleu-neon), 0 0 25px var(--bleu-neon), 0 0 30px var(--bleu-neon), 0 0 35px var(--bleu-neon);
+    --main-shadow: 0 10px 20px rgba(0,0,0,0.20), 0 6px 6px rgba(0,0,0,0.25);
     --border-neon: 2px solid var(--bleu-neon);
+}
+@font-face {
+    font-family: 'Orkney Light';
+    src: url('../fonts/Orkney Light.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Orkney Medium';
+    src: url('../fonts/Orkney Medium.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Orkney Regular';
+    src: url('../fonts/Orkney Regular.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Orkney Bold';
+    src: url('../fonts/Orkney Bold.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Neoneon';
+    src: url('../fonts/Neoneon.otf') format('truetype');
 }
 html,body{
     width: 100%;
     height: 100%;
-    background-color:  var(--bleu-fond);
+    background: var(--bleu-fond) url('../storage/2Weeks_Images/2WeeksBC.jpg')no-repeat 50% 50% / cover;
+
 }
 
 #nav{
@@ -42,4 +66,120 @@ html,body{
     height:80px;
     opacity:1;
     background-color: rgba(0,0,0,.5);
+
+    box-shadow: 5px 0 25px 3px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 0 25px 3px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 0 25px 3px rgba(0, 0, 0, .5);
+
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
+}
+#nav #nav-account{
+    position: relative;
+    display: block;
+    width:300px;
+    height:100%;
+    top:0;
+    left:0;
+    background-color: rgba(255, 255, 255, .1);
+    padding: 15px 25px;
+    float: left;
+}
+#nav-account #nav-account-icon{
+    position: relative;
+    display: block;
+    width: 50px;
+    height:50px;
+    top:0;
+    left:0;
+    overflow: hidden;
+    float: left;
+
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+
+    background-color: var(--bleu-fond);
+
+    box-shadow: var(--main-shadow);
+    -webkit-box-shadow: var(--main-shadow);
+    -moz-box-shadow: var(--main-shadow);
+}
+#nav-account #nav-account-name {
+    position: relative;
+    display: block;
+    top:0;
+    left: 0;
+    width: calc(100% - 50px ) ;
+    height:100%;
+    float: left;
+    text-align: left;
+    padding:10px;
+}
+#nav a{
+    position: relative;
+    width:100%;
+    height:100%;
+    text-decoration: none;
+    color: white;
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size:16.5px;
+    line-height: 33px;
+}
+
+#nav #nav-items-links{
+    position: relative;
+    display: block;
+    width:auto;
+    height:100%;
+    float: right;
+    padding: 25px;
+}
+#nav-items-links a{
+    margin-left:25px;
+    width: auto;
+    float: right;
+}
+#nav-items-links #nav-Logo{
+    font-family: "neoneon", "Orkney Medium", Roboto, sans-serif;
+    font-size:33px;
+    text-shadow: var(--shadow-neon-logo);
+}
+#nav-items-links #nav-Logo span{
+    font-size:15px;
+}
+#nav-exit{
+    width:32px!important;
+    height:100%;
+    display: block;
+    background: transparent url('../storage/2Weeks_Images/Auth/exit.png')no-repeat 50% 50% / contain;
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+
+    background-color: var(--bleu-neon)!important;
+    box-shadow: var(--shadow-neon)!important;
+    -webkit-box-shadow: var(--shadow-neon)!important;
+    -moz-box-shadow: var(--shadow-neon)!important;
+}
+
+.has-error{
+    background-color: var(--rouge-error-50);
+}
+.error-block{
+    position: relative;
+    display: block;
+    width:100%;
+
+}
+.error-block strong{
+    top: 45px;
+    font-size: 10px;
+    color: var(--rouge-error);
+    width: 100%;
+    left: 0px;
+    position: absolute;
 }

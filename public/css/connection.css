@@ -294,30 +294,6 @@ label[for="register_cards_input_password"], label[for="register_cards_input_pass
     opacity: 0.5;
 }
 
-#fp-nav ul li a span{
-    background-color: var(--bleu-neon);
-
-    box-shadow: var(--shadow-neon);
-    -webkit-box-shadow: var(--shadow-neon);
-    -moz-box-shadow: var(--shadow-neon);
-}
-.has-error{
-    background-color: var(--rouge-error-50);
-}
-.error-block{
-    position: relative;
-    display: block;
-    width:100%;
-
-}
-.error-block strong{
-    top: 45px;
-    font-size: 10px;
-    color: var(--rouge-error);
-    width: 100%;
-    left: 0px;
-    position: absolute;
-}
 .forgot_passwd_link{
     color: var(--bleu-neon);
     text-decoration: underline;
@@ -328,5 +304,8 @@ label[for="register_cards_input_password"], label[for="register_cards_input_pass
     display: block;
     top: 10px;
     position: relative;
+}
+#connection-section{
+    background-color: var(--bleu-fond);
 }
 /*https://www.flaticon.com/packs/interface-46*/

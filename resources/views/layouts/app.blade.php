@@ -11,83 +11,50 @@
     <title>@yield('title')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/2Weekscss.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
-    @yield('css')
+    <link href="{{ asset('css/2Weekscss.css') }}" rel="stylesheet">
+@yield('css')
     <!-- Jquery -->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
+
 </head>
 <body>
 
     <nav id="nav">
-
-    </nav>
-{{--
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+        <div id="nav-account">
+            <div id="nav-account-icon"></div>
+            <div id="nav-account-name">
+                @guest
+                    <a href="{{ route('login') }}">Login</a>
+                @else
+                    <a href="">{{ Auth::user()->name }}</a>
+                @endguest
             </div>
-        </nav>--}}
+        </div>
+        <div id="nav-items-links">
+            @guest
+            @else
+                <a id="nav-exit" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            @endguest
+            <a href="#">Simulation</a>
+            <a href="#">Equipes</a>
+            <a href="#">Championnats</a>
+            <a href="#">Home</a>
+            <a id="nav-Logo" href="{{ url('/') }}">2Weeks<span>&#169;</span></a>
+        </div>
+    </nav>
 
-        @yield('content')
-    </div>
+    {{--content--}}
     <div id="container">
         @yield('container')
     </div>
+
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
     @yield('scripts')
 </body>
 </html>

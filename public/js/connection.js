@@ -1,4 +1,5 @@
 $('document').ready(function(){
+    var firstLoad = true;
 
 	initAll();
 
@@ -15,64 +16,87 @@ $('document').ready(function(){
 	function fullpageInitPlug(){
 
 		$('#container').fullpage({
-			//Navigation
-			lockAnchors: false,
-			navigation: true,
-			navigationPosition: 'right',
-			showActiveTooltip: true,
-			slidesNavigation: false,
-			slidesNavPosition: 'bottom',
+            //Navigation
+            lockAnchors: true,
+            navigation: true,
+            navigationPosition: 'right',
+            anchors:['monmon', 'mymymy'],
 
-			//Scrolling
-			css3: true,
-			scrollingSpeed: 600,
-			autoScrolling: true,
-			fitToSection: true,
-			fitToSectionDelay: 1000,
-			scrollBar: false,
-			easing: 'easeInOutCubic',
-			easingcss3: 'cubic-bezier(1,.17,.47,1.2)',
-			loopBottom: false,
-			loopTop: false,
-			loopHorizontal: false,
-			continuousVertical: false,
-			continuousHorizontal: false,
-			scrollHorizontally: false,
-			interlockedSlides: false,
-			dragAndMove: false,
-			offsetSections: false,
-			resetSliders: false,
-			fadingEffect: false,
-			scrollOverflow: false,
-			scrollOverflowReset: false,
-			scrollOverflowOptions: null,
-			touchSensitivity: 15,
-			normalScrollElementTouchThreshold: 5,
-			bigSectionsDestination: null,
+            showActiveTooltip: true,
+            slidesNavigation: false,
+            slidesNavPosition: 'bottom',
 
-			//Accessibility
-			keyboardScrolling: true,
-			animateAnchor: true,
-			recordHistory: true,
+            //Scrolling
+            css3: true,
+            scrollingSpeed: 600,
+            autoScrolling: true,
+            fitToSection: true,
+            fitToSectionDelay: 1000,
+            scrollBar: false,
+            easing: 'easeInOutCubic',
+            easingcss3: 'cubic-bezier(1,.17,.47,1.2)',
+            loopBottom: false,
+            loopTop: false,
+            loopHorizontal: false,
+            continuousVertical: false,
+            continuousHorizontal: false,
+            scrollHorizontally: false,
+            interlockedSlides: false,
+            dragAndMove: false,
+            offsetSections: false,
+            resetSliders: false,
+            fadingEffect: false,
+            scrollOverflow: false,
+            scrollOverflowReset: false,
+            scrollOverflowOptions: null,
+            touchSensitivity: 15,
+            normalScrollElementTouchThreshold: 5,
+            bigSectionsDestination: null,
 
-			//Design
-			controlArrows: true,
-			verticalCentered: true,
-			responsiveWidth: 0,
-			responsiveHeight: 0,
-			responsiveSlides: false,
-			parallax: false,
-			parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+            //Accessibility
+            keyboardScrolling: true,
+            animateAnchor: true,
+            recordHistory: true,
 
-			//Custom selectors
-			sectionSelector: '.section',
-			slideSelector: '.slide',
+            //Design
+            controlArrows: true,
+            verticalCentered: true,
+            responsiveWidth: 0,
+            responsiveHeight: 0,
+            responsiveSlides: false,
+            parallax: false,
+            parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 
-			lazyLoading: true,
+            //Custom selectors
+            sectionSelector: '.section',
+            slideSelector: '.slide',
 
-		});
+            lazyLoading: true,
+            afterLoad: function(anchorLink, index){
+                //using index
+                if(index == 1){
+                	if(firstLoad){
+                        $('#nav').css('transition','0s');
+                        $('#nav').css('opacity', 0);
+                        setTimeout(function () {
+                            $('#nav').css('transition','var(--2W-transition-35)');
+                        },100);
+					}
+                    firstLoad = false;
+                }
+            },
+            onLeave: function(index, nextIndex, direction){
+                if(index == 1){
+                    $('#nav').css('opacity', 1);
+                }
+                if(nextIndex == 1){
+                	$('#nav').css('opacity', 0);
+                }
+            }
+
+
+        });
 	}
-
 	function loginRegisterSwitch(){
 		$('#login_cards_container .connect_cards_header').click(function(){
 			$this = $(this);
