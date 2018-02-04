@@ -18,7 +18,7 @@
 
         <div id="svg_background">
             <object>
-                <embed src="{{ asset('storage/2Weeks_Images/Auth/bckgrd_cours.svg') }}"></embed>
+                <embed src="{{ asset('storage/2Weeks_Images/Auth/bckgrd_cours.svg') }}" border="5"></embed>
             </object>
         </div>
 
