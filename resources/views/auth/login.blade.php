@@ -60,7 +60,7 @@
                         @endif
                     </div>
 
-                    <button type="submite">Connect</button>
+                    <button type="submit">Connect</button>
                     <a class="forgot_passwd_link" href="{{ route('password.request') }}">
                         Forgot Your Password?
                     </a>
@@ -132,7 +132,7 @@
                         <input type="password" name="password_confirmation" id="register_cards_input_passwordVerify">
                     </div>
 
-                    <button type="submite">Register</button>
+                    <button type="submit">Register</button>
                 </form>
             </div>
 

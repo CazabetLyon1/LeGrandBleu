@@ -298,7 +298,11 @@ label[for="register_cards_input_password"], label[for="register_cards_input_pass
     background : transparent url('../storage/2Weeks_Images/Auth/locked (1).png') no-repeat 50% 50% / 16px;
     opacity: 0.5;
 }
-
+button[type='submit']{
+    font-family: "Orkney Light", Roboto, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 .forgot_passwd_link{
     color: var(--bleu-neon);
     text-decoration: underline;

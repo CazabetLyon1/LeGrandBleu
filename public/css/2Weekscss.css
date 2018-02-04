@@ -127,6 +127,9 @@ html,body{
     font-family:"Orkney Medium", Roboto, sans-serif;
     font-size:16.5px;
     line-height: 33px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
 }
 
 #nav #nav-items-links{
@@ -146,6 +149,8 @@ html,body{
     font-family: "neoneon", "Orkney Medium", Roboto, sans-serif;
     font-size:33px;
     text-shadow: var(--shadow-neon-logo);
+    text-transform: uppercase;
+
 }
 #nav-items-links #nav-Logo span{
     font-size:15px;
