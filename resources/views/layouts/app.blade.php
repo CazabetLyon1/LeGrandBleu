@@ -8,12 +8,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/2Weekscss.css') }}" rel="stylesheet">
+
+    @yield('css')
+    <!-- Jquery -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
 </head>
 <body>
+
+    <nav id="nav">
+
+    </nav>
+{{--
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -69,12 +79,15 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>--}}
 
         @yield('content')
     </div>
-
+    <div id="container">
+        @yield('container')
+    </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

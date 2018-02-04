@@ -1,16 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-html,body{
-    width: 100%;
-    height: 100%;
-    background-color: #070025;
-}
-
 #container{
     position: relative;
     width: 100vw;
@@ -61,13 +48,13 @@ html,body{
     -webkit-box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
 
-    transition: .35s ease-in-out;
-    -webkit-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -moz-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -o-transition: .35s cubic-bezier(1,.17,.47,1.2);
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
 }
 .connect_cards_darkbackground{
-    background-color: rgba(8,0,41,0.5);
+    background-color: var(--bleu-fond-50);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -120,14 +107,14 @@ html,body{
     -webkit-filter: blur(20px); /* Safari 6.0 - 9.0 */
     filter: blur(20px);
 
-    transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -webkit-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -moz-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -o-transition: .35s cubic-bezier(1,.17,.47,1.2);
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
 }
 
 .connect_cards_background object embed {
-    background: #070025;
+    background: var(--bleu-fond);
 }
 
 #register_cards_container:not(.active) .connect_cards_background{
@@ -168,10 +155,10 @@ html,body{
     /*box-shadow: 0 0 15px #3b5998;*/
     opacity: 0.5;
 
-    transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -webkit-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -moz-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -o-transition: .35s cubic-bezier(1,.17,.47,1.2);
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
 
 }
 
@@ -186,10 +173,10 @@ html,body{
     /*box-shadow: 0 0 15px #3b5998;*/
     opacity: 0.5;
 
-    transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -webkit-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -moz-transition: .35s cubic-bezier(1,.17,.47,1.2);
-    -o-transition: .35s cubic-bezier(1,.17,.47,1.2);
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
 }
 
 .connect_cards_form{
@@ -216,15 +203,15 @@ html,body{
     top: 40px;
     width: 100%;
     height: 2px;
-    background-color: rgb(0, 244, 255);
+    background-color: var(--bleu-neon);
 
-    box-shadow: 0 0 10px rgb(0, 244, 255);
-    -webkit-box-shadow: 0 0 10px rgb(0, 244, 255);
-    -moz-box-shadow: 0 0 10px rgb(0, 244, 255);
+    box-shadow: var(--shadow-neon);
+    -webkit-box-shadow: var(--shadow-neon);
+    -moz-box-shadow: var(--shadow-neon);
 }
 
 .connect_cards_form_containers:hover{
-    background-color: rgba(7, 0, 37,.5);
+    background-color: var(--bleu-fond-50);
 }
 
 .connect_cards_form_containers label{
@@ -265,7 +252,7 @@ html,body{
     color: white;
     margin: auto;
 
-    border: 2px solid rgb(0, 244, 255);
+    border: var(--border-neon);
     outline: none;
 
     border-radius: 10px;
@@ -273,9 +260,9 @@ html,body{
     -moz-border-radius: 10px;
 
     cursor: pointer;
-    box-shadow: 0 0 10px rgb(0, 244, 255), inset 0 0 10px rgb(0, 244, 255);
-    -webkit-box-shadow: 0 0 10px rgb(0, 244, 255), inset 0 0 10px rgb(0, 244, 255);
-    -moz-box-shadow: 0 0 10px rgb(0, 244, 255), inset 0 0 10px rgb(0, 244, 255);
+    box-shadow: var(--shadow-neon), inset var(--shadow-neon);
+    -webkit-box-shadow: var(--shadow-neon), inset var(--shadow-neon);
+    -moz-box-shadow: var(--shadow-neon), inset var(--shadow-neon);
     /*opacity: 0.5;*/
 
 }
@@ -308,11 +295,38 @@ label[for="register_cards_input_password"], label[for="register_cards_input_pass
 }
 
 #fp-nav ul li a span{
-    background-color: rgb(0, 244, 255);
+    background-color: var(--bleu-neon);
 
-    box-shadow: 0 0 10px rgb(0, 244, 255);
-    -webkit-box-shadow: 0 0 10px rgb(0, 244, 255);
-    -moz-box-shadow: 0 0 10px rgb(0, 244, 255);
+    box-shadow: var(--shadow-neon);
+    -webkit-box-shadow: var(--shadow-neon);
+    -moz-box-shadow: var(--shadow-neon);
 }
+.has-error{
+    background-color: var(--rouge-error-50);
+}
+.error-block{
+    position: relative;
+    display: block;
+    width:100%;
 
+}
+.error-block strong{
+    top: 45px;
+    font-size: 10px;
+    color: var(--rouge-error);
+    width: 100%;
+    left: 0px;
+    position: absolute;
+}
+.forgot_passwd_link{
+    color: var(--bleu-neon);
+    text-decoration: underline;
+    background-color: transparent;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    top: 10px;
+    position: relative;
+}
 /*https://www.flaticon.com/packs/interface-46*/
