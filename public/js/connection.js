@@ -1,5 +1,4 @@
 $('document').ready(function(){
-    var firstLoad = true;
 
 	initAll();
 
@@ -75,19 +74,16 @@ $('document').ready(function(){
             afterLoad: function(anchorLink, index){
                 //using index
                 if(index == 1){
-                	if(firstLoad){
-                        $('#nav').css('transition','0s');
-                        $('#nav').css('opacity', 0);
-                        setTimeout(function () {
-                            $('#nav').css('transition','var(--2W-transition-35)');
-                        },100);
-					}
-                    firstLoad = false;
+                    $('#nav').css('display','none');
+                    $('#nav').css('opacity', 0);
                 }
             },
             onLeave: function(index, nextIndex, direction){
                 if(index == 1){
-                    $('#nav').css('opacity', 1);
+                    $('#nav').css('display', 'block');
+                    setTimeout(function () {
+                        $('#nav').css('opacity', 1);
+                    },100);
                 }
                 if(nextIndex == 1){
                 	$('#nav').css('opacity', 0);
