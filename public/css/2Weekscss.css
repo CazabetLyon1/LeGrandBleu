@@ -51,7 +51,7 @@
 html,body{
     width: 100%;
     height: 100%;
-    background: var(--bleu-fond) url('../storage/2Weeks_Images/2WeeksBC.jpg')no-repeat 50% 50% / cover;
+    background: var(--bleu-fond) url('../2Weeks_Images/2WeeksBC.jpg')no-repeat 50% 50% / cover;
 
 }
 
