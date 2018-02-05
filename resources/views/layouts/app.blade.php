@@ -44,7 +44,7 @@
             <a href="#">Equipes</a>
             <a href="#">Championnats</a>
             <a href="#">Home</a>
-            <a id="nav-Logo" href="{{ url('/') }}">2Weeks<span>&#169;</span></a>
+            <a id="nav-Logo" href="{{ url('/') }}">STATS&CO<span>&#169;</span></a>
         </div>
     </nav>
 
