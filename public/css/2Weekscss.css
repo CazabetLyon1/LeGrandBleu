@@ -159,7 +159,7 @@ html,body{
     width:32px!important;
     height:100%;
     display: block;
-    background: transparent url('../storage/2Weeks_Images/Auth/exit.png')no-repeat 50% 50% / contain;
+    background: transparent url('../2Weeks_Images/Auth/exit.png')no-repeat 50% 50% / contain;
 }
 
 #fp-nav ul li a span,
