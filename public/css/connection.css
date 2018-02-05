@@ -1,0 +1,320 @@
+#container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+.section{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+#background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    /*background: #070025 url('../img/connect_bcgrnd.jpg')no-repeat 50% 50% / cover;*/
+    z-index: 1;
+}
+#svg_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+#login_cards_container, #register_cards_container{
+    position: absolute;
+    display: block;
+
+    width: 50px;
+    height: 50px;
+
+    overflow: hidden;
+    z-index: 2;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
+
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
+}
+.connect_cards_darkbackground{
+    background-color: var(--bleu-fond-50);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+#login_cards_container{
+    margin-top: -25px;
+    top: 50%;
+    margin-left: -250px;
+    left: 50%;
+}
+#register_cards_container{
+    margin-top: -25px;
+    top: 50%;
+    margin-left: 200px;
+    left: 50%;
+}
+#register_cards_container.active{
+    width: 300px;
+    height: 465px;
+    margin-top: -232.5px;
+    top: 50%;
+    margin-left: -150px;
+    left: 50%;
+}
+#login_cards_container.active{
+    width: 300px;
+    height: 300px;
+    margin-top: -150px;
+    top: 50%;
+    margin-left: -150px;
+    left: 50%;
+}
+#login_cards_container:not(.active) #login_icon, #register_cards_container:not(.active) #register_icon{
+    background-position-y: 50%;
+
+}
+
+#login_cards_container .connect_cards_background, #register_cards_container .connect_cards_background{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    margin-left: -50vw;
+    left: 50%;
+    margin-top: -50vh;
+    top: 50%;
+    /*background: #070025 url('../img/connect_bcgrnd.jpg')no-repeat 50% 50% / cover;*/
+
+    -webkit-filter: blur(20px); /* Safari 6.0 - 9.0 */
+    filter: blur(20px);
+
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
+}
+object embed{
+    border: none;
+    box-shadow: none;
+    min-height: 100vh;
+    min-width: 10vw;
+}
+.connect_cards_background object embed {
+    background: var(--bleu-fond);
+}
+
+#register_cards_container:not(.active) .connect_cards_background{
+    margin-left: calc( ( -100vw / 2 ) - 225px );
+}
+#login_cards_container:not(.active) .connect_cards_background{
+    margin-left: calc( ( -100vw / 2 ) + 225px );
+}
+#register_cards_container:not(.active), #login_cards_container:not(.active){
+    cursor: pointer;
+}
+
+
+.connect_cards_header{
+    width: 100%;
+    height: 50px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.connect_cards_body{
+    width: 100%;
+    height: calc( 100% - 50px );
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#login_icon{
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto;
+    top: 0;
+    left: 0;
+    background: transparent url('../2Weeks_Images/Auth/people.png')no-repeat 50% 100% / 32px;
+    /*box-shadow: 0 0 15px #3b5998;*/
+    opacity: 0.5;
+
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
+
+}
+
+#register_icon{
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto;
+    top: 0;
+    left: 0;
+    background: transparent url('../2Weeks_Images/Auth/clipboard.png')no-repeat 50% 100% / 32px;
+    /*box-shadow: 0 0 15px #3b5998;*/
+    opacity: 0.5;
+
+    transition: var(--2W-transition-35);
+    -webkit-transition: var(--2W-transition-35);
+    -moz-transition: var(--2W-transition-35);
+    -o-transition: var(--2W-transition-35);
+}
+
+.connect_cards_form{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    padding:25px;
+}
+.connect_cards_form_containers{
+    width:100%;
+    height: 40px;
+    margin-bottom: 25px;
+
+    /*border-bottom: 2px solid rgb(0, 244, 255);
+    -webkit-border-bottom: 2px solid rgb(0, 244, 255);
+    -moz-border-bottom: 2px solid rgb(0, 244, 255);*/
+
+}
+.connect_cards_form_containers:after{
+    content: "";
+    position: relative;
+    display: block;
+    top: 40px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--bleu-neon);
+
+    box-shadow: var(--shadow-neon);
+    -webkit-box-shadow: var(--shadow-neon);
+    -moz-box-shadow: var(--shadow-neon);
+}
+
+.connect_cards_form_containers:hover{
+    background-color: var(--bleu-fond-50);
+}
+
+.connect_cards_form_containers label{
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+}
+.connect_cards_form_containers input{
+    width: calc( 100% - 40px );
+    height: 40px;
+    float: left;
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    color: white;
+
+    background-color: transparent;
+    border: none;
+    -webkit-border: none;
+    -moz-border: none;
+    outline: none;
+
+}
+
+.connect_cards_form button{
+    position: relative;
+    display: block;
+
+    width: 150px;
+    height: 40px;
+
+    background-color: transparent;
+    color: white;
+    margin: auto;
+
+    border: var(--border-neon);
+    outline: none;
+
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+    cursor: pointer;
+    box-shadow: var(--shadow-neon), inset var(--shadow-neon);
+    -webkit-box-shadow: var(--shadow-neon), inset var(--shadow-neon);
+    -moz-box-shadow: var(--shadow-neon), inset var(--shadow-neon);
+    /*opacity: 0.5;*/
+
+}
+
+label[for="login_cards_input_login"]{
+    background : transparent url('../2Weeks_Images/Auth/envelope.png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+
+label[for="login_cards_input_password"]{
+    background : transparent url('../2Weeks_Images/Auth/locked (1).png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+
+label[for="register_cards_input_name"]{
+    background : transparent url('../2Weeks_Images/Auth/people.png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+label[for="register_cards_input_email"]{
+    background : transparent url('../2Weeks_Images/Auth/envelope.png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+label[for="register_cards_input_birthday"]{
+    background : transparent url('../2Weeks_Images/Auth/calendar.png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+label[for="register_cards_input_password"], label[for="register_cards_input_passwordVerify"]{
+    background : transparent url('../2Weeks_Images/Auth/locked (1).png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+button[type='submit']{
+    font-family: "Orkney Light", Roboto, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.forgot_passwd_link{
+    color: var(--bleu-neon);
+    text-decoration: underline;
+    background-color: transparent;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    top: 10px;
+    position: relative;
+}
+#connection-section{
+    background-color: var(--bleu-fond);
+}
+/*https://www.flaticon.com/packs/interface-46*/
