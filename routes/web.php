@@ -22,3 +22,6 @@ Route::get('profile', function () {
 })->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/simulation', 'SimulationController@index');
+

@@ -11,9 +11,13 @@
     <title>@yield('title')</title>
 
     <!-- Styles -->
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/2Weekscss.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 @yield('css')
     <!-- Jquery -->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
@@ -32,7 +36,7 @@
                 @endguest
             </div>
         </div>
-        <div id="nav-items-links">
+        <div id="nav-items-links" class="hidden-xs">
             @guest
             @else
                 <a id="nav-exit" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"></a>
@@ -40,7 +44,7 @@
                     {{ csrf_field() }}
                 </form>
             @endguest
-            <a href="#">Simulation</a>
+            <a href="{{ url('/simulation') }}">Simulation</a>
             <a href="#">Equipes</a>
             <a href="#">Championnats</a>
             <a href="#">Home</a>
@@ -52,6 +56,8 @@
     <div id="container">
         @yield('container')
     </div>
+
+    @yield('footer')
 
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}"></script>--}}
