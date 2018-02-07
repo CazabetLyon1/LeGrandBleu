@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Club;
 
 class SimulationController extends Controller
 {
@@ -13,7 +15,10 @@ class SimulationController extends Controller
      */
     public function index()
     {
-        return view('simulation');
+        $pays = DB::select('SELECT DISTINCT pays FROM clubs');
+        $clubs = DB::select('SELECT * FROM clubs');
+
+        return view('simulation', ['pays' => $pays, 'clubs' => $clubs]);
     }
 
     /**

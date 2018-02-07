@@ -1,6 +1,5 @@
-.logo-club {
-    width: 32px;
-    margin-bottom: 10px;
+.block {
+    margin: 25px;
 }
 
 .col-md-12 h1 {
@@ -15,6 +14,22 @@
     font-family:"Orkney Medium", Roboto, sans-serif;
 }
 
+* {
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
 p {
     color: white;
+}
+
+.logo-club {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+}
+
+.carousel-control.right, .carousel-control.left {
+    background-image: none;
 }

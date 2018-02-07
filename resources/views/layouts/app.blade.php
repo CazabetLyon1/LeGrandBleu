@@ -21,7 +21,6 @@
 @yield('css')
     <!-- Jquery -->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
-
 </head>
 <body>
 
@@ -57,10 +56,8 @@
         @yield('container')
     </div>
 
-    @yield('footer')
-
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

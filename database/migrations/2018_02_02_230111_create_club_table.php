@@ -13,14 +13,14 @@ class CreateClubTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('club', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id_club');
             $table->string('nom_club');
             $table->string('url_club');
             $table->string('nom_ville');
             $table->enum('pays',['France','Espagne', 'Allemagne', 'Italie', 'Angleterre']);
-            $table->string('acronyme')->unique();
-            $table->string('nom_image')->unique();
+            $table->string('acronyme');
+            $table->string('nom_image');
             $table->timestamps(); /* ajoute la date de creation et modification */
         });
     }
