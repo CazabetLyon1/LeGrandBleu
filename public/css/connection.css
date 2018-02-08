@@ -195,6 +195,7 @@ object embed{
     width:100%;
     height: 40px;
     margin-bottom: 25px;
+    clear: both;
 
     /*border-bottom: 2px solid rgb(0, 244, 255);
     -webkit-border-bottom: 2px solid rgb(0, 244, 255);
@@ -245,7 +246,10 @@ object embed{
     outline: none;
 
 }
+.connect_cards_form_containers_name input{
+    width: calc( 50% - 40px );
 
+}
 .connect_cards_form button{
     position: relative;
     display: block;
@@ -282,7 +286,7 @@ label[for="login_cards_input_password"]{
     opacity: 0.5;
 }
 
-label[for="register_cards_input_name"]{
+label[for="register_cards_input_first_name"], label[for="register_cards_input_last_name"]{
     background : transparent url('../2Weeks_Images/Auth/people.png') no-repeat 50% 50% / 16px;
     opacity: 0.5;
 }

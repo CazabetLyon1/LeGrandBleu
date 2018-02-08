@@ -9,13 +9,20 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','birthday'
+        'login',
+        'first_name',
+        'last_name',
+        'avatar_url',
+        'email',
+        'password',
+        'birthday'
     ];
 
     /**
@@ -26,4 +33,32 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst(strtolower($value));
+    }
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucfirst(strtolower($value));
+    }
+
+    public function setLoginAttribute($value)
+    {
+        $count = User::where('login', $value)->count();
+        $nbr = 0;
+        echo $count;
+        if($count != 0){
+            while($count != 0){
+                $nbr++;
+                $count = User::where('login', $value.$nbr)->count();
+            }
+            $this->attributes['login'] = strtolower($value).$nbr;
+        }else{
+            $this->attributes['login'] = strtolower($value);
+        }
+
+
+    }
+
 }
