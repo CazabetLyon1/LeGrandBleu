@@ -28,7 +28,7 @@
                 @guest
                     <a href="{{ route('login') }}">Login</a>
                 @else
-                    <a href="">{{ Auth::user()->name }}</a>
+                    <a href="">{{ Auth::user()->first_name }}</a>
                 @endguest
             </div>
         </div>
