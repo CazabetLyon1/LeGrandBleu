@@ -22,3 +22,8 @@ Route::get('profile', function () {
 })->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('{usr_login}',[
+    'uses' => 'UserController@index',
+    'as' => 'user-page'
+])->where('usr_login','^[a-z]+[.][a-z]+[0-9]+?$');

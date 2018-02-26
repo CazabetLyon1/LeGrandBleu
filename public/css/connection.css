@@ -4,12 +4,7 @@
     height: 100vh;
     display: block;
 }
-.section{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
+
 #background{
     position: absolute;
     width: 100%;
@@ -318,6 +313,7 @@ button[type='submit']{
     top: 10px;
     position: relative;
 }
+
 #connection-section{
     background-color: var(--bleu-fond);
 }

@@ -11,7 +11,7 @@
     <title>@yield('title')</title>
 
     <!-- Styles -->
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/2Weekscss.css') }}" rel="stylesheet">
 @yield('css')
@@ -26,9 +26,9 @@
             <div id="nav-account-icon"></div>
             <div id="nav-account-name">
                 @guest
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">Connexion <br/> Inscription</a>
                 @else
-                    <a href="">{{ Auth::user()->first_name }}</a>
+                    <a href="{{ route('user-page',['usr_login' => Auth::user()->login]) }}">{{ Auth::user()->first_name }} <br/> {{Auth::user()->last_name}}</a>
                 @endguest
             </div>
         </div>
@@ -54,7 +54,7 @@
     </div>
 
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

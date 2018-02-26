@@ -5,7 +5,16 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
+p{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.row > div{
+    padding: 0;
+}
+.row{
+    margin: 0;
+}
 :root{
     --bleu-neon: #00ffff;
     --bleu-neon-75: rgba(0, 255, 255, .75);
@@ -27,6 +36,7 @@
     --shadow-neon-logo:  0 0 5px var(--bleu-neon), 0 0 10px var(--bleu-neon), 0 0 15px var(--bleu-neon), 0 0 20px var(--bleu-neon), 0 0 25px var(--bleu-neon), 0 0 30px var(--bleu-neon), 0 0 35px var(--bleu-neon);
     --main-shadow: 0 10px 20px rgba(0,0,0,0.20), 0 6px 6px rgba(0,0,0,0.25);
     --border-neon: 2px solid var(--bleu-neon);
+    --shadow-icons: drop-shadow(0px 5px 2px rgba(0,0,0,.75));
 }
 @font-face {
     font-family: 'Orkney Light';
@@ -52,7 +62,7 @@ html,body{
     width: 100%;
     height: 100%;
     background: var(--bleu-fond) url('../2Weeks_Images/2WeeksBC.jpg')no-repeat 50% 50% / cover;
-
+    background-attachment: fixed;
 }
 
 #nav{
@@ -116,7 +126,7 @@ html,body{
     height:100%;
     float: left;
     text-align: left;
-    padding:10px;
+    padding:5px 10px;
 }
 #nav a{
     position: relative;
@@ -131,7 +141,10 @@ html,body{
     letter-spacing: 2px;
 
 }
-
+#nav-account #nav-account-name a{
+    font-size:16.5px;
+    line-height: 16.5px;
+}
 #nav #nav-items-links{
     position: relative;
     display: block;
@@ -185,6 +198,119 @@ html,body{
     font-size: 10px;
     color: var(--rouge-error);
     width: 100%;
-    left: 0px;
+    left: 0;
     position: absolute;
+}
+
+.section{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+.sct-pd{
+    padding: 105px 25px 25px 25px;
+}
+
+.block{
+    padding: 25px!important;
+}
+/********************
+* font style
+********************/
+/*Orkney Bold*/
+.xl-OrkneyBold{
+    font-family: "Orkney Bold", Roboto, sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+.md-OrkneyBold{
+    font-family: "Orkney Bold", Roboto, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+.sm-OrkneyBold{
+    font-family: "Orkney bold", Roboto, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 2px;
+}
+.xs-OrkneyBold{
+    font-family: "Orkney bold", Roboto, sans-serif;
+    font-size: 8px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 2px;
+}
+/*Orney light*/
+.md-OrkneyLight{
+    font-family: "Orkney light", Roboto, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+.sm-OrkneyLight{
+    font-family: "Orkney light", Roboto, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 2px;
+}
+/********************
+* block style
+********************/
+.block-section .block-title{
+    height: 32px;
+    font-size: 16px;
+    font-family: "Orkney Bold", Roboto, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    margin-bottom: 30px;
+}
+.block-section .block-title .block-title-icon{
+    position: relative;
+    display: block;
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+
+    -webkit-filter: var(--shadow-icons);
+    -moz-filter: var(--shadow-icons);
+    -ms-filter: var(--shadow-icons);
+    -o-filter: var(--shadow-icons);
+    filter: var(--shadow-icons);
+}
+.block-section .block-title .block-title-text{
+    height: 100%;
+    display: inline-block;
+    line-height: 36px;
+}
+.block-content{
+    text-align: center;
+}
+.content-plcmt{
+    float: left;
+}
+.bg-icon{
+    display: block;
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+
+    -webkit-filter: var(--shadow-icons);
+    -moz-filter: var(--shadow-icons);
+    -ms-filter: var(--shadow-icons);
+    -o-filter: var(--shadow-icons);
+    filter: var(--shadow-icons);
+    /*background: transparent url('../img/ol.png') no-repeat 50% 50% / contain;*/
+    margin-bottom: 25px;
 }
