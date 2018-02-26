@@ -13,10 +13,10 @@
 
                     <div id="account-status">
                         <div class="account-info">
-                            <div class="header" data-toggle="modal" data-target="#myModal"></div>
+                            <div class="header" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset('storage/'.$user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
                             <div class="body">
-                                <p class="user_name xl-OrkneyBold">Thibaud Perrin</p>
-                                <p class="user_email">thibaud.perrin@gmail.com</p>
+                                <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
+                                <p class="user_email">{!! $user->email !!}</p>
                             </div>
                         </div>
                         <div class="account-nav">

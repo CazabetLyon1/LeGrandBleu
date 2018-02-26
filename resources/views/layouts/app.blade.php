@@ -23,7 +23,7 @@
 
     <nav id="nav">
         <div id="nav-account">
-            <div id="nav-account-icon"></div>
+            <div id="nav-account-icon" style="background: #070025  url('{{ asset('storage/'.Auth::user()->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
             <div id="nav-account-name">
                 @guest
                     <a href="{{ route('login') }}">Connexion <br/> Inscription</a>

@@ -19,8 +19,8 @@
     box-shadow: var(--main-shadow);
     -webkit-box-shadow: var(--main-shadow);
     -moz-box-shadow: var(--main-shadow);
+    background-color: #070025;
 
-    background: #070025 url('../img/images_user.jpg')no-repeat 50% 50% / cover;
 }
 
 #account-status .account-info .header:after{
