@@ -29,27 +29,24 @@
                     <div class="col-md-12"><h4><i class="fa fa-user-circle"></i> Équipe Domicile</h4></div>
                 </div>
                 <div class="row text-center">
-                    <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="0">
+                    <div id="carouselPaysDom" class="carousel" data-ride="carousel" data-interval="0">
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner" onchange='choixPays(this.p)'>
-                            <?php foreach ($pays as $objPays) { ?>
-                            <div class="item" >
-                                <p><?php echo $objPays->pays;?></p>
-                            </div>
-                            <?php } ?>
+                        <div class="carousel-inner">
 
-                            <div class="item active">
-                                <p>Selectionnez un pays</p>
-                            </div>
+                            <?php foreach ($pays as $objPays) { ?>
+                                <div class="item">
+                                    <p id="<?php echo $objPays->pays."_Dom";?>"><?php echo $objPays->pays;?></p>
+                                </div>
+                            <?php } ?>
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <a class="left carousel-control" href="#carouselPaysDom" data-slide="prev">
                             <i class="fa fa-arrow-left"></i>
                             <span class="sr-only">Précédent</span>
                         </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <a class="right carousel-control" href="#carouselPaysDom" data-slide="next">
                             <i class="fa fa-arrow-right"></i>
                             <span class="sr-only">Suivant</span>
                         </a>
@@ -61,21 +58,10 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="logo-club center-block" style="background: transparent url({{ url('2Weeks_Images/Clubs/Ligue1/Olympique_lyonnais.png') }}) no-repeat 50% 50% / contain"></div>
-                                <p>Olympique Lyonnais</p>
-                            </div>
-
-                            <?php foreach ($clubs as $club) { ?>
-                            <div class="item">
-                                <div class="logo-club center-block" style="background: transparent url({{ url('2Weeks_Images/Clubs/Ligue1/Olympique_lyonnais.png') }}) no-repeat 50% 50% / contain"></div>
-                                <p><?php echo $club->nom_club;?></p>
-                            </div>
-                            <?php } ?>
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="left carousel-control blabla" href="#myCarousel2" data-slide="prev">
+                        <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
                             <i class="fa fa-arrow-left"></i>
                             <span class="sr-only">Précédent</span>
                         </a>
@@ -88,13 +74,65 @@
             </div>
 
             <div class="col-md-6">
-                <h4><i class="fa fa-user-circle"></i> Équipe Exterieur</h4>
+                <div class="row">
+                    <div class="col-md-12"><h4><i class="fa fa-user-circle"></i> Équipe Extérieure</h4></div>
+                </div>
+                <div class="row text-center">
+                    <div id="carouselPaysDo" class="carousel" data-ride="carousel" data-interval="0">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+
+                            <?php foreach ($pays as $objPays) { ?>
+                            <div class="item">
+                                <p id="<?php echo $objPays->pays;?>Ext"><?php echo $objPays->pays;?></p>
+                            </div>
+                            <?php } ?>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#carouselPaysDo" data-slide="prev">
+                            <i class="fa fa-arrow-left"></i>
+                            <span class="sr-only">Précédent</span>
+                        </a>
+                        <a class="right carousel-control" href="#carouselPaysDom" data-slide="next">
+                            <i class="fa fa-arrow-right"></i>
+                            <span class="sr-only">Suivant</span>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <div class="row text-center">
+                    <div id="carouselChoixTeamExt" class="carousel" data-ride="carousel" data-interval="0">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item">fs</div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#carouselChoixTeamExt" data-slide="prev">
+                            <i class="fa fa-arrow-left"></i>
+                            <span class="sr-only">Précédent</span>
+                        </a>
+                        <a class="right carousel-control" href="#carouselChoixTeamExt" data-slide="next">
+                            <i class="fa fa-arrow-right"></i>
+                            <span class="sr-only">Suivant</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
+
+    <script>
+        var token = '{{ Session::token() }}';
+        var url = '{{route('getClub')}}';
+    </script>
     <!-- Scripts -->
-    <script src="{{ asset('js/simulation.js') }}"></script>
+
+
 @endsection

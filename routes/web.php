@@ -25,3 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/simulation', 'SimulationController@index');
 
+Route::get('/simulation/{url_club_domicile}-VS-{url_club_exterieur}',
+    'SimulationController@simulationResultat');
+
+Route::post('/getClub', 'SimulationController@getClubByPays')->name('getClub');
