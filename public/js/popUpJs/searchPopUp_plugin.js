@@ -67,8 +67,7 @@
 						method: 'POST',
 						url: settings.dataUrl,
 						data: {_token: token},
-						success: function (msg) {
-							console.log(msg.data);
+						success: function (msg){
 							drawIcon(msg.data);
 						}
 					});

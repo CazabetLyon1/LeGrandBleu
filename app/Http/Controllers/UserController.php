@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -38,6 +39,20 @@ class UserController extends Controller
         }
     }
 
+    public function changeUserImage(Request $request)
+    {
+        $accounts_images = DB::table('accounts_images')
+            ->where('accounts_images.id','=', $request['imgId'])->first();
+        if($accounts_images === null){
+            return response()->json(['data' => 'error']);
+        }else{
+            $user = User::find(Auth::id());
+            $user->account_image_id = $request['imgId'];
+            $user->update();
+
+            return response()->json(['data' => $accounts_images]);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

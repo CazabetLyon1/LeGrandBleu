@@ -29,3 +29,4 @@ Route::get('{usr_login}',[
 ])->where('usr_login','^[a-z]+[.][a-z]+[0-9]*?$');
 
 Route::post('/accounts_images', 'AccountsImagesController@getAllImages')->name('accounts_images');
+Route::post('/change_accounts_images', 'UserController@changeUserImage')->name('change_accounts_images');
