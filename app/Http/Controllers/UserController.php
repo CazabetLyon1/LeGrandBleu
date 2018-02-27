@@ -29,8 +29,9 @@ class UserController extends Controller
             return abort(404, 'Bad User Login');
         }else{
             if($user->avatar_url == ""){
-                $user->avatar_url = "STATS&CO/usrs_imgs/img-usr-default.jpg";
+                $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.jpg";
             }
+            $user->team_img_url = "STATS&CO/default_imgs/club-img-default.png";
             return view('User.user', compact('user'));
         }
     }

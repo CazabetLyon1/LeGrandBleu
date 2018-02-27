@@ -311,6 +311,5 @@ html,body{
     -ms-filter: var(--shadow-icons);
     -o-filter: var(--shadow-icons);
     filter: var(--shadow-icons);
-    /*background: transparent url('../img/ol.png') no-repeat 50% 50% / contain;*/
     margin-bottom: 25px;
 }
