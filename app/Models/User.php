@@ -17,6 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'login',
+        'account_image_id' => 1,
         'first_name',
         'last_name',
         'avatar_url' => 'STATS&CO/default_imgs/img-usr-default.jpg',
@@ -33,7 +34,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function account_image()
+    {
+        return $this->belongsTo('App\Models\Account_image');
+    }
     public function setFirstNameAttribute($value)
     {
         $this->attributes['first_name'] = ucfirst(strtolower($value));

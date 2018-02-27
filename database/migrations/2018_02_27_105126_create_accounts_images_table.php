@@ -15,7 +15,7 @@ class CreateAccountsImagesTable extends Migration
     {
         Schema::create('accounts_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('avatar_url')->default('STATS&CO/default_imgs/img-usr-default.jpg');
+            $table->string('avatar_url');
             $table->timestamps();
         });
     }

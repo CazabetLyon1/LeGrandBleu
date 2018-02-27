@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -25,6 +26,11 @@ class UserController extends Controller
     public function index($usr_login)
     {
         $user = User::where('login','like',$usr_login)->first();
+        $user1 = DB::table('users')
+            ->leftJoin('accounts_images','accounts_images.id','=','users.account_image_id')
+            ->select('users.id','users.account_image_id','users.login','users.first_name','users.last_name','users.avatar_url','users.email','users.birthday','accounts_images.avatar_url as img')
+            ->where('login','like',$usr_login)->get();
+        dd($user1);
         if($user === null) {
             return abort(404, 'Bad User Login');
         }else{
