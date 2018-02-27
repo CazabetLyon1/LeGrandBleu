@@ -19,7 +19,7 @@ class User extends Authenticatable
         'login',
         'first_name',
         'last_name',
-        'avatar_url',
+        'avatar_url' => 'STATS&CO/default_imgs/img-usr-default.jpg',
         'email',
         'password',
         'birthday'
