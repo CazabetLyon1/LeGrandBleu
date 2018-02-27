@@ -28,8 +28,8 @@ class UserController extends Controller
     {
         /*$user = User::where('login','like',$usr_login)->first();*/
         $user = DB::table('users')
-            ->leftJoin('accounts_images','accounts_images.id','=','users.account_image_id')
-            ->select('users.id','users.account_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url')
+            ->leftJoin('accounts_images','accounts_images.id','=','users.accounts_image_id')
+            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url')
             ->where('login','like',$usr_login)->first();
         if($user === null) {
             return abort(404, 'Bad User Login');
@@ -47,7 +47,7 @@ class UserController extends Controller
             return response()->json(['data' => 'error']);
         }else{
             $user = User::find(Auth::id());
-            $user->account_image_id = $request['imgId'];
+            $user->accounts_image_id = $request['imgId'];
             $user->update();
 
             return response()->json(['data' => $accounts_images]);

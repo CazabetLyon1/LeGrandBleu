@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration {
     public function up() {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('account_image_id')->unsigned()->default(1);
+            $table->integer('accounts_image_id')->unsigned()->default(1);
             $table->string('login');
             $table->string('first_name')->default('');
             $table->string('last_name')->default('');
@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration {
             $table->timestamps();  /* ajoute la date de creation et modification */
 
             //Foreign key
-            $table->foreign('account_image_id')
+            $table->foreign('accounts_image_id')
                 ->references('id')
                 ->on('accounts_images')
                 ->onDelete('cascade')
@@ -39,7 +39,7 @@ class CreateUsersTable extends Migration {
      */
     public function down() {
         Schema::table('users', function(Blueprint $table){
-            $table->dropForeign('users_account_image_id_foreign');
+            $table->dropForeign('users_accounts_image_id_foreign');
         });
         Schema::dropIfExists('users');
     }
