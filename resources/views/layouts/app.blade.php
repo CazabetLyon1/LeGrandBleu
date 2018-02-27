@@ -25,7 +25,7 @@
         <div id="nav-account">
             @guest
             @else
-                <div id="nav-account-icon" style="background: #070025  url('{{ asset('storage/'.Auth::user()->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
+                <div id="nav-account-icon" style="background: #070025  url('{{ asset(Auth::user()->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
             @endguest
             <div id="nav-account-name">
                 @guest

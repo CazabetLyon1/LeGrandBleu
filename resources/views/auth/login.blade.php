@@ -18,7 +18,7 @@
 
         <div id="svg_background">
             <object>
-                <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}" border="5"></embed>
+                <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}" border="5"></embed>
             </object>
         </div>
 
@@ -26,7 +26,7 @@
         <div id="login_cards_container" class="active">
             <div class="connect_cards_background">
                 <object>
-                    <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}"></embed>
+                    <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}"></embed>
                 </object>
             </div>
             <div class="connect_cards_darkbackground"></div>
@@ -72,7 +72,7 @@
         <div id="register_cards_container" class="">
             <div class="connect_cards_background">
                 <object>
-                    <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}"></embed>
+                    <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}"></embed>
                 </object>
             </div>
             <div class="connect_cards_darkbackground"></div>
