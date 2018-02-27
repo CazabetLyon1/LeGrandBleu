@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('title') {!!  $user->first_name.' '.$user->last_name !!} @endsection
 @section('css')
+    {!! Html::style('css/popUpJs/popUpStyle.css') !!}
     {!! Html::style('css/userPage.css') !!}
 @endsection
 @section('scripts')
+    <script>
+        var token = '{{ Session::token() }}';
+        var url = '{{route('accounts_images')}}';
+    </script>
+    {!! Html::script('js/popUpJs/searchPopUp_plugin.js') !!}
+    {!! Html::script('js/userPage.js') !!}
 @endsection
 
 @section('container')
@@ -13,7 +20,7 @@
 
                     <div id="account-status">
                         <div class="account-info">
-                            <div class="header" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset($user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
+                            <div class="header popUpSearch_activator" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset($user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
                             <div class="body">
                                 <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
                                 <p class="user_email">{!! $user->email !!}</p>

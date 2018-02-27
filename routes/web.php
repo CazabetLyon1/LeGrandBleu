@@ -27,3 +27,5 @@ Route::get('{usr_login}',[
     'uses' => 'UserController@index',
     'as' => 'user-page'
 ])->where('usr_login','^[a-z]+[.][a-z]+[0-9]*?$');
+
+Route::post('/accounts_images', 'AccountsImagesController@getAllImages')->name('accounts_images');
