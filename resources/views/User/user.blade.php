@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') User @endsection
+@section('title') {!!  $user->first_name.' '.$user->last_name !!} @endsection
 @section('css')
     {!! Html::style('css/userPage.css') !!}
 @endsection
