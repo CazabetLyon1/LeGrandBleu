@@ -9,6 +9,16 @@ $('document').ready(function(){
         activeBubble: false
     });
 
+    /*$('body').searchPopUp_plugin({
+        mainContainer: '#favorite-team-content',
+        needActivate: true,
+        popUpPositionButton: "right",
+        popUpPositionAlign: "center",
+        activateAttr: ".logo-favorite-team-popUp",
+        searchActive: true,
+        activeBubble: false
+    });*/
+
     $('body').on('click', '.popUpSearch-item-icon', function () {
         $this = $(this);
         var changeImg = $this.attr('data-nom-team');

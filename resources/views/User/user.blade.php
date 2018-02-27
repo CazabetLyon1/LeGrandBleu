@@ -56,8 +56,8 @@
                             <p class="block-title-text">Equipe favorite</p>
                         </div>
                         <div class="block-content">
-                            <div class="content-plcmt">
-                                <div class="logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->team_img_url) }}') no-repeat 50% 50% / contain;"></div>
+                            <div class="content-plcmt" id="favorite-team-content">
+                                <div class="logo-favorite-team-popUp logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->team_img_url) }}') no-repeat 50% 50% / contain;"></div>
                                 <p class="name-favorite-team md-OrkneyBold">Olympique Lyonnais</p>
                                 <p class="att-def-favorite-team md-OrkneyLight">Att : <span class="md-OrkneyBold">90</span> Def : <span class="md-OrkneyBold"> 85</span></p>
                                 <p class="country-favorite-team sm-OrkneyLight">France - Lyon</p>

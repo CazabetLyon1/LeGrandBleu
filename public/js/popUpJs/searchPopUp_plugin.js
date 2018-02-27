@@ -77,45 +77,45 @@
 
 			function needActivation(){
 				if(settings.needActivate){
-					$('#popUpSearch').css('display', 'none');
+					$('.popUpSearch').css('display', 'none');
 					positionButtonPopUp();
 					$('body').on('click', settings.activateAttr, function(){
 						if(activationToggle){
-							$('#popUpSearch').css('display', 'none');
+							$('.popUpSearch').css('display', 'none');
 							activationToggle = false;
 						}else{
-							$('#popUpSearch').css('display', 'block');
+							$('.popUpSearch').css('display', 'block');
 							activationToggle = true;
 						}
 					});
 					
 				}else{
-					$('#popUpSearch').css('display', 'block');
+					$('.popUpSearch').css('display', 'block');
 				}
 			}
 
 			function positionButtonPopUp() {
-		    	$('#popUpSearch').css('position','absolute');
+		    	$('.popUpSearch').css('position','absolute');
                 var posLeft = actPos.left + parseInt($(settings.activateAttr).css('marginLeft'));
                 var postop = actPos.top + parseInt($(settings.activateAttr).css('marginTop'));
 
 				switch(settings.popUpPositionButton) {
 				    case "top":
 					    positionHAlignPopUp();
-				    	$('#popUpSearch').css('top',postop - $('#popUpSearch').outerHeight() -10);
+				    	$('.popUpSearch').css('top',postop - $('.popUpSearch').outerHeight() -10);
 				        break;
 				    case "right":
 					    positionVAlignPopUp();
 
-				    	$('#popUpSearch').css('left',posLeft + $(settings.activateAttr).outerWidth() + 10);
+				    	$('.popUpSearch').css('left',posLeft + $(settings.activateAttr).outerWidth() + 10);
 				        break;
 			        case "bottom":
 					    positionHAlignPopUp();
-				        $('#popUpSearch').css('top',postop + $(settings.activateAttr).outerHeight() + 10);
+				        $('.popUpSearch').css('top',postop + $(settings.activateAttr).outerHeight() + 10);
 				        break;
 			        case "left":
 					    positionVAlignPopUp();
-				    	$('#popUpSearch').css('left',posLeft - 250 -10);
+				    	$('.popUpSearch').css('left',posLeft - 250 -10);
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionButton] arg need to be "top","right","bottom" or "left" \n|-your arg : "'+settings.popUpPositionButton+'"\n+----------');
@@ -127,13 +127,13 @@
 				var posLeft = actPos.left + parseInt($(settings.activateAttr).css('marginLeft'));
 				switch(settings.popUpPositionAlign) {
 				    case "start":
-				    	$('#popUpSearch').css('left',posLeft);
+				    	$('.popUpSearch').css('left',posLeft);
 				        break;
 				    case "center":
-				    	$('#popUpSearch').css('left',posLeft -( ( 250/2 ) - ( $(settings.activateAttr).outerWidth() / 2 ) ) );
+				    	$('.popUpSearch').css('left',posLeft -( ( 250/2 ) - ( $(settings.activateAttr).outerWidth() / 2 ) ) );
 				        break;
 			        case "end":
-				    	$('#popUpSearch').css('left',posLeft - (250 - $(settings.activateAttr).outerWidth() ) );
+				    	$('.popUpSearch').css('left',posLeft - (250 - $(settings.activateAttr).outerWidth() ) );
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionAlign] arg need to be "start","center" or "end" \n|-your arg : "'+settings.popUpPositionAlign+'"\n+----------');
@@ -144,13 +144,13 @@
                 var postop = actPos.top + parseInt($(settings.activateAttr).css('marginTop'));
                 switch(settings.popUpPositionAlign) {
 				    case "start":
-				    	$('#popUpSearch').css('top',postop);
+				    	$('.popUpSearch').css('top',postop);
 				        break;
 				    case "center":
-				    	$('#popUpSearch').css('top',postop - ( (  $('#popUpSearch').outerHeight()/2 ) - ( $(settings.activateAttr).outerHeight() / 2 ) ) );
+				    	$('.popUpSearch').css('top',postop - ( (  $('.popUpSearch').outerHeight()/2 ) - ( $(settings.activateAttr).outerHeight() / 2 ) ) );
 				        break;
 			        case "end":
-				    	$('#popUpSearch').css('top',postop - ( $('#popUpSearch').outerHeight() - $(settings.activateAttr).outerHeight()) );
+				    	$('.popUpSearch').css('top',postop - ( $('.popUpSearch').outerHeight() - $(settings.activateAttr).outerHeight()) );
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionAlign] arg need to be "start","center" or "end" \n|-your arg : "'+settings.popUpPositionAlign+'"\n+----------');
@@ -160,16 +160,16 @@
 			function createBase(){
 				if(settings.searchActive){
                     $(settings.mainContainer).append(''+
-                        '<div id="popUpSearch">'+
-                        	'<div id="popUpSearch-input-content">'+
+                        '<div class="popUpSearch">'+
+                        	'<div class="popUpSearch-input-content">'+
                         		'<input type="text" name="search-team" placeholder="search..."/>'+
 							'</div>'+
-                        	'<div id="popUpSearch-itemsContainer"></div>'+
+                        	'<div class="popUpSearch-itemsContainer"></div>'+
                         '</div>');
 				}else{
                     $(settings.mainContainer).append(''+
-                        '<div id="popUpSearch">'+
-                        	'<div id="popUpSearch-itemsContainer"></div>'+
+                        '<div class="popUpSearch">'+
+                        	'<div class="popUpSearch-itemsContainer"></div>'+
                         '</div>');
 				}
 
@@ -188,12 +188,12 @@
 								'<div data-nom-team="'+$value.nom+'" class="popUpSearch-item-icon" style="background: transparent url(\''+$value.img+'\')no-repeat 50% 50% / contain;"></div>'+
 							'</div>'+
 						'</div>';
-				$('#popUpSearch  #popUpSearch-itemsContainer').prepend(itemHtml);
+				$('.popUpSearch  .popUpSearch-itemsContainer').prepend(itemHtml);
 			}
 
 			function animateApparition(){
 				var delays = 0;
-				$('#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item').each(function(){
+				$('.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item').each(function(){
 					$(this).find('.popUpSearch-item-content').delay(delays).queue(function(next) {
 						$(this).addClass("animate");
 						next();
@@ -204,34 +204,34 @@
 
 			function bubbleName(){
 				$(''+
-					'<div id="popUpSearch-nameBubble">'+
+					'<div class="popUpSearch-nameBubble">'+
 						'<span></span>'+
-					'</div>').insertAfter('#popUpSearch');
+					'</div>').insertAfter('.popUpSearch');
 				bubbleMove();
 			}
 			function bubbleMove(){
-				$('body').on('mousemove', '#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item', function(event){
+				$('body').on('mousemove', '.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item', function(event){
 					$this = $(this);
-					$('#popUpSearch-nameBubble span').text($this.find('.popUpSearch-item-icon').attr("data-nom-team"));
-					$('#popUpSearch-nameBubble').addClass('show');
-					var posX  = event.pageX - $('#popUpSearch-nameBubble').width()/2;
-					$('#popUpSearch-nameBubble').css('top', event.pageY-60);
-					$('#popUpSearch-nameBubble').css('left', posX);
+					$('.popUpSearch-nameBubble span').text($this.find('.popUpSearch-item-icon').attr("data-nom-team"));
+					$('.popUpSearch-nameBubble').addClass('show');
+					var posX  = event.pageX - $('.popUpSearch-nameBubble').width()/2;
+					$('.popUpSearch-nameBubble').css('top', event.pageY-60);
+					$('.popUpSearch-nameBubble').css('left', posX);
 				});
 
-				$('body').on('mouseleave', '#popUpSearch  #popUpSearch-itemsContainer', function(){
+				$('body').on('mouseleave', '.popUpSearch  .popUpSearch-itemsContainer', function(){
 					$this = $(this);
-					$('#popUpSearch-nameBubble span').text("");
-					$('#popUpSearch-nameBubble').removeClass('show');
+					$('.popUpSearch-nameBubble span').text("");
+					$('.popUpSearch-nameBubble').removeClass('show');
 				});
 			}
 
 			function removeContent(){
-				$('#popUpSearch  #popUpSearch-itemsContainer').html("");
+				$('.popUpSearch  .popUpSearch-itemsContainer').html("");
 			}
 
 			function search(){
-				$('body').on('input','#popUpSearch #popUpSearch-input-content input[name="search-team"]',function(e){
+				$('body').on('input','.popUpSearch .popUpSearch-input-content input[name="search-team"]',function(e){
 					$this = $(this);
 
 					var valeur = $this.val();

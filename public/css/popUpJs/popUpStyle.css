@@ -1,4 +1,4 @@
-#popUpSearch, #popUpSearch > *, #popUpSearch *, #popUpSearch-nameBubble, #popUpSearch-nameBubble * {
+.popUpSearch, .popUpSearch > *, .popUpSearch *, .popUpSearch-nameBubble, .popUpSearch-nameBubble * {
 	padding: 0;
 	margin: 0;
 	-webkit-box-sizing: border-box;
@@ -28,7 +28,7 @@ body{
     src: url('../../fonts/Orkney Bold.otf') format('truetype');
 }
 
-#popUpSearch{
+.popUpSearch{
 	width: 250px;
 	min-height: 50px;
 	max-height: 300px;
@@ -61,7 +61,7 @@ body{
 
 }
 
-#popUpSearch #popUpSearch-input-content{
+.popUpSearch .popUpSearch-input-content{
 	width: 100%;
 	height: 50px;
 	position: relative;
@@ -72,7 +72,7 @@ body{
 	padding: 10px;
 	background-color: rgba(255, 255, 255, .05);
 }
-#popUpSearch #popUpSearch-input-content input[name="search-team"]{
+.popUpSearch .popUpSearch-input-content input[name="search-team"]{
 	position: relative;
 	display: block;
 	width: 100%;
@@ -85,7 +85,7 @@ body{
 	font-family: "Orkney Light", Roboto, sans-serif;
 }
 
-#popUpSearch #popUpSearch-itemsContainer{
+.popUpSearch .popUpSearch-itemsContainer{
 	width: 100%;
 	min-height: 0px;
 	max-height: 250px;
@@ -95,7 +95,7 @@ body{
 	overflow: auto;
 	padding: 10px;
 }
-#popUpSearch #popUpSearch-input-content + #popUpSearch-itemsContainer:before {
+.popUpSearch .popUpSearch-input-content + .popUpSearch-itemsContainer:before {
 	content: '';
     position: fixed;
     width: 100%;
@@ -106,7 +106,7 @@ body{
     display: block;
     background: linear-gradient(rgba(12, 36, 97,1.0) 10%, transparent 100%);
 }
-#popUpSearch #popUpSearch-input-content + #popUpSearch-itemsContainer:after {
+.popUpSearch .popUpSearch-input-content + .popUpSearch-itemsContainer:after {
 	content: '';
     position: fixed;
     width: 100%;
@@ -117,7 +117,7 @@ body{
     display: block;
     background: linear-gradient(transparent 10%, rgba(12, 36, 97,1.0) 100%);
 }
-#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item{
+.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item{
 	display: block;
 	position: relative;
 	width: calc(100% / 4);
@@ -125,7 +125,7 @@ body{
 	
 	float: left;
 }
-#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content{
+.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content{
 	position: relative;
 	display: block;
 	top: 50%;
@@ -156,11 +156,11 @@ body{
 	-moz-transition: 0.3s ease-in-out;
 	-ms-transition: 0.3s ease-in-out;
 	-o-transition: 0.3s ease-in-out;
-	padding: 3px;
+	padding: 4px;
 	border: 1px solid rgba(0, 0, 0, .5);
 
 }
-#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content.animate{
+.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content.animate{
 	opacity: 1;
 	transform: rotateY(0deg);
 	-webkit-transform: rotateY(0deg);
@@ -168,7 +168,7 @@ body{
 	-ms-transform: rotateY(0deg);
 	-o-transform: rotateY(0deg);
 }
-#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content:hover{
+.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content:hover{
 	background-color: rgba(0, 0, 0, .25);
 	cursor: pointer;
 	box-shadow: 0 9px 23px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
@@ -179,7 +179,7 @@ body{
 	border: 1px solid rgba(0, 0, 0, 0);
 
 }
-#popUpSearch  #popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content .popUpSearch-item-icon{
+.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content .popUpSearch-item-icon{
 	width: 32px;
 	height: 32px;
 	position: relative;
@@ -193,7 +193,7 @@ body{
 	/*background: transparent url('../img/default.png')no-repeat 50% 50% / contain;*/
 }
 
-#popUpSearch-nameBubble{
+.popUpSearch-nameBubble{
 	background-color: white;
 	position: fixed;
 	display: block;
@@ -220,7 +220,7 @@ body{
 	-ms-transition: 0.2s ease-in-out;
 	-o-transition: 0.2s ease-in-out;*/
 }
-#popUpSearch-nameBubble:after{
+.popUpSearch-nameBubble:after{
     content: '';
     display: block;
     width: 0;
@@ -234,7 +234,7 @@ body{
     margin-left: -10px;
     z-index: 500;
 }
-#popUpSearch-nameBubble:before{
+.popUpSearch-nameBubble:before{
     content: '';
     display: block;
     width: 0;
@@ -252,10 +252,10 @@ body{
     left: 50%;
     margin-left: -10px;
 }
-#popUpSearch-nameBubble.show{
+.popUpSearch-nameBubble.show{
 	opacity: 1;
 }
-#popUpSearch-nameBubble span{
+.popUpSearch-nameBubble span{
 	font-family: "Orkney Light", Roboto, sans-serif;
 	font-size: 12px;
 }
