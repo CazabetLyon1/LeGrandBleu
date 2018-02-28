@@ -17,10 +17,10 @@ class CreateClubTable extends Migration {
             $table->increments('id_club');
             $table->string('nom_club');
             $table->string('url_club');
-            $table->string('nom_ville');
+            $table->string('nom_ville')->nullable();
             $table->enum('pays',['France','Espagne', 'Allemagne', 'Italie', 'Angleterre']);
-            $table->string('acronyme')->unique();
-            $table->string('nom_image')->unique();
+            $table->string('acronyme')->unique()->nullable();
+            $table->string('nom_image')->unique()->nullable();
             $table->timestamps(); /* ajoute la date de creation et modification */
         });
     }

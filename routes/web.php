@@ -30,3 +30,6 @@ Route::get('{usr_login}',[
 
 Route::post('/accounts_images', 'AccountsImagesController@getAllImages')->name('accounts_images');
 Route::post('/change_accounts_images', 'UserController@changeUserImage')->name('change_accounts_images');
+
+Route::get('/ClubUpload', 'clubUploadController@index')->name('ClubUpload');
+Route::post('/store', 'clubUploadController@store')->name('store');
