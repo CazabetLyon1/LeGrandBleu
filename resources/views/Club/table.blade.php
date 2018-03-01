@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title') ClubUploadLogo @endsection
 @section('css')
+    <meta id="token" name="token" content="{ { csrf_token() } }">
     <style>
         .table-light{
             color: black;
@@ -31,7 +32,7 @@
 @section('scripts')
 
     <script>
-
+        var mData;
     $('document').ready(function () {
         var token = '{{ Session::token() }}';
         var url1 = '{{route('store')}}';
@@ -42,10 +43,11 @@
             var request = new XMLHttpRequest();
 
             form.addEventListener('submit', function (e){
+                mData = $(this);
                 e.preventDefault();
                 var formdata = new FormData(form);
-
                 request.open('post', "{{ url('/store') }}");
+                request.setRequestHeader('X-CSRF-TOKEN', token);
                 request.addEventListener("load", transferComplete);
                 request.send(formdata);
             });
@@ -55,7 +57,8 @@
             var response = JSON.parse(data.currentTarget.response);
             if(response.success){
                 console.log(response);
-
+                mData.find('input[name="url_club"]').val(response.url);
+                mData.find('input[name="nom_image"]').val(response.nom);
             }
         }
 

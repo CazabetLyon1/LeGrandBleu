@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -41,13 +42,22 @@ class clubUploadController extends Controller
         $this->validate($request, [
             'clubfile' => 'required'
         ]);
+
+
+
         $file = $request->file('clubfile');
         $array = explode('.', $file->getClientOriginalName());
         $extension = end($array);
         if(!empty($file)){
             Storage::disk('public_upload_clubs')->put('/'.$request['pays'].'/'.$request['nom_club'].'.'.$extension, file_get_contents($file));
+
+            $club = DB::table('club')->where('id_club', '=', $request['id_club'])
+                ->update(array(
+                    'url_club' => 'STATS&CO/Clubs/'.$request['pays'].'/'.$request['nom_club'].'.'.$extension,
+                    'nom_image' => $request['nom_club'].'.'.$extension,
+                ));
         }
-        return \Response::json(array('success' => true));
+        return \Response::json(array('success' => true, 'url' => 'STATS&CO/Clubs/'.$request['pays'].'/'.$request['nom_club'].'.'.$extension, 'nom' => $request['nom_club'].'.'.$extension ));
     }
 
     /**
