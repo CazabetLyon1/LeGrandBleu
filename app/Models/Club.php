@@ -18,4 +18,8 @@ class Club extends Model
         'nom_image',
     ];
 
+    public function user()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

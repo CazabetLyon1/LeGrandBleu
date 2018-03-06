@@ -29,12 +29,18 @@ class UserController extends Controller
         /*$user = User::where('login','like',$usr_login)->first();*/
         $user = DB::table('users')
             ->leftJoin('accounts_images','accounts_images.id','=','users.accounts_image_id')
-            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url')
+            ->leftJoin('club','club.id_club','=','users.club_id')
+            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url', 'club.id_club', 'club.nom_club', 'club.url_club', 'club.nom_ville', 'club.nom_ville', 'club.pays')
             ->where('login','like',$usr_login)->first();
         if($user === null) {
             return abort(404, 'Bad User Login');
         }else{
-            $user->team_img_url = "STATS&CO/default_imgs/club-img-default.png";
+            if($user->id_club === null){
+                $user->url_club = "STATS&CO/default_imgs/club-img-default.png";
+            }
+            if($user->accounts_image_id === null){
+                $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
+            }
             return view('User.user', compact('user'));
         }
     }
@@ -44,7 +50,7 @@ class UserController extends Controller
         $accounts_images = DB::table('accounts_images')
             ->where('accounts_images.id','=', $request['imgId'])->first();
         if($accounts_images === null){
-            return response()->json(['data' => 'error']);
+            return response()->json(['data' => 'error image doen\'t exist']);
         }else{
             $user = User::find(Auth::id());
             $user->accounts_image_id = $request['imgId'];
@@ -62,6 +68,20 @@ class UserController extends Controller
             ->get();
         return response()->json(['data' => $team]);
     }
+    public function changeTeam(Request $request){
+        $club = DB::table('club')
+            ->where('club.id_club','=', $request['club_id'])->first();
+        if($club === null){
+            return response()->json(['data' => 'error club doen\'t exist']);
+        }else{
+            $user = User::find(Auth::id());
+            $user->club_id = $request['club_id'];
+            $user->update();
+
+            return response()->json(['data' => $club]);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

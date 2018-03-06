@@ -14,7 +14,8 @@ class CreateUsersTable extends Migration {
     public function up() {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('accounts_image_id')->unsigned()->default(1);
+            $table->integer('accounts_image_id')->unsigned()->nullable();
+            $table->integer('club_id')->unsigned()->nullable();
             $table->string('login');
             $table->string('first_name')->default('');
             $table->string('last_name')->default('');
@@ -30,6 +31,12 @@ class CreateUsersTable extends Migration {
                 ->on('accounts_images')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            //Foreign key
+            $table->foreign('club_id')
+                ->references('id_club')
+                ->on('club')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
     /**
@@ -40,6 +47,7 @@ class CreateUsersTable extends Migration {
     public function down() {
         Schema::table('users', function(Blueprint $table){
             $table->dropForeign('users_accounts_image_id_foreign');
+            $table->dropForeign('users_club_id_foreign');
         });
         Schema::dropIfExists('users');
     }

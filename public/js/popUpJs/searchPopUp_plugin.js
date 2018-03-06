@@ -44,6 +44,8 @@
 
 			var activationToggle = false;
 			var actPos = $(settings.activateAttr).position();
+            var typingTimer;                //timer identifier
+            var doneTypingInterval = 50000;  //time in ms, 5 second for example
             var entityMap = {
                 '&': '&amp;',
                 '<': '&lt;',
@@ -261,13 +263,27 @@
 			}
 
 			function search(){
-				$('body').on('input',settings.mainContainer+' .popUpSearch .popUpSearch-input-content input[name="search-team"]',function(e){
-					$this = $(this);
 
-					var valeur = $this.val();
+				//on keyup, start the countdown
+                $('body').on('keyup',settings.mainContainer+' .popUpSearch .popUpSearch-input-content input[name="search-team"]', function () {
+                    $this = $(this);
+                    clearTimeout(typingTimer);
+                    typingTimer = setTimeout(function () {
+                        doneTyping($this);
+                    }, 250);
+                });
 
-					removeContent();
-					if(valeur.length > 0 ){
+				//on keydown, clear the countdown
+                $('body').on('keydown',settings.mainContainer+' .popUpSearch .popUpSearch-input-content input[name="search-team"]',function () {
+                    clearTimeout(typingTimer);
+                });
+
+				//user is "finished typing," do something
+                function doneTyping ($this) {
+                    var valeur = $this.val();
+
+                    removeContent();
+                    if(valeur.length > 0 ){
 
                         $.ajax({
                             method: 'POST',
@@ -278,14 +294,13 @@
                             }
                         });
 
-					}else{
-
-						removeContent();
-					}
-					if(settings.popUpPositionButton != "bottom" && settings.needActivate){
-						positionButtonPopUp();
-					}
-				});
+                    }else{
+                        removeContent();
+                    }
+                    if(settings.popUpPositionButton != "bottom" && settings.needActivate){
+                        positionButtonPopUp();
+                    }
+                }
 			}
 		});
 

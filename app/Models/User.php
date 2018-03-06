@@ -17,7 +17,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'login',
-        'account_image_id' => 1,
+        'account_image_id',
+        'club_id',
         'first_name',
         'last_name',
         'email',
@@ -36,6 +37,10 @@ class User extends Authenticatable
     public function accounts_image()
     {
         return $this->belongsTo('App\Models\Accounts_image');
+    }
+    public function club()
+    {
+        return $this->belongsTo('App\Models\Club');
     }
     public function setFirstNameAttribute($value)
     {

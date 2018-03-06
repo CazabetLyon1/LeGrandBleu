@@ -13,6 +13,8 @@
             var url = '{{route('accounts_images')}}';
             var url1 = '{{route('change_accounts_images')}}';
             var url2 = '{{route('search_accounts_team')}}';
+            var url3 = '{{route('change_accounts_team')}}';
+            var url5 = '{{asset('')}}';
         </script>
         {!! Html::script('js/popUpJs/searchPopUp_plugin.js') !!}
         {!! Html::script('js/userPage.js') !!}
@@ -58,10 +60,10 @@
                         </div>
                         <div class="block-content">
                             <div class="content-plcmt" id="favorite-team-content">
-                                <div class="logo-favorite-team-popUp logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->team_img_url) }}') no-repeat 50% 50% / contain;"></div>
-                                <p class="name-favorite-team md-OrkneyBold">Olympique Lyonnais</p>
+                                <div class="logo-favorite-team-popUp logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->url_club) }}') no-repeat 50% 50% / contain;"></div>
+                                <p class="name-favorite-team md-OrkneyBold">{{ $user->nom_club }}</p>
                                 <p class="att-def-favorite-team md-OrkneyLight">Att : <span class="md-OrkneyBold">90</span> Def : <span class="md-OrkneyBold"> 85</span></p>
-                                <p class="country-favorite-team sm-OrkneyLight">France - Lyon</p>
+                                <p class="country-favorite-team sm-OrkneyLight">{{ $user->pays }} - {{ $user->nom_ville }}</p>
                             </div>
 
                         </div>

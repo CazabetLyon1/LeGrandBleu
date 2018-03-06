@@ -24,7 +24,17 @@ $('document').ready(function(){
     $('body').on('click', '#favorite-team-content .popUpSearch-item-icon', function () {
         $this = $(this);
         var changeImg = $this.attr('data-id-spopup');
-        alert(changeImg);
+
+        $.ajax({
+            method: 'POST',
+            url: url3,
+            data: {club_id: changeImg, _token: token},
+            success: function (msg) {
+                $('#favorite-team-content .logo-favorite-team').css('background-image', 'url("'+msg.data.url_club+'")');
+                $('#favorite-team-content .name-favorite-team').text(msg.data.nom_club);
+                $('#favorite-team-content .country-favorite-team').text(msg.data.pays+' - '+msg.data.nom_ville);
+            }
+        });
     });
 
     $('body').on('click', '#account-status .popUpSearch-item-icon', function () {
@@ -36,7 +46,7 @@ $('document').ready(function(){
             url: url1,
             data: {imgId: changeImg, _token: token},
             success: function (msg) {
-                $("#account-status .header").css('background-image', 'url('+msg.data.avatar_url+')');
+                $("#account-status .header").css('background-image', 'url("'+msg.data.avatar_url+'")');
                 $("#nav-account-icon").css('background-image', 'url('+msg.data.avatar_url+')');
             }
         });
