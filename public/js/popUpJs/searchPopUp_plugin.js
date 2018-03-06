@@ -270,7 +270,7 @@
                     clearTimeout(typingTimer);
                     typingTimer = setTimeout(function () {
                         doneTyping($this);
-                    }, 250);
+                    }, 100);
                 });
 
 				//on keydown, clear the countdown
