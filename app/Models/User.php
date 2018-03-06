@@ -17,9 +17,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'login',
+        'account_image_id',
+        'club_id',
         'first_name',
         'last_name',
-        'avatar_url',
         'email',
         'password',
         'birthday'
@@ -33,7 +34,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function accounts_image()
+    {
+        return $this->belongsTo('App\Models\Accounts_image');
+    }
+    public function club()
+    {
+        return $this->belongsTo('App\Models\Club');
+    }
     public function setFirstNameAttribute($value)
     {
         $this->attributes['first_name'] = ucfirst(strtolower($value));

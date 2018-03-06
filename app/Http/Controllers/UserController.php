@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -24,15 +26,59 @@ class UserController extends Controller
      */
     public function index($usr_login)
     {
-        $user = User::where('login','like',$usr_login)->first();
+        /*$user = User::where('login','like',$usr_login)->first();*/
+        $user = DB::table('users')
+            ->leftJoin('accounts_images','accounts_images.id','=','users.accounts_image_id')
+            ->leftJoin('club','club.id_club','=','users.club_id')
+            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url', 'club.id_club', 'club.nom_club', 'club.url_club', 'club.nom_ville', 'club.nom_ville', 'club.pays')
+            ->where('login','like',$usr_login)->first();
         if($user === null) {
             return abort(404, 'Bad User Login');
         }else{
-            if($user->avatar_url == ""){
-                $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.jpg";
+            if($user->id_club === null){
+                $user->url_club = "STATS&CO/default_imgs/club-img-default.png";
             }
-            $user->team_img_url = "STATS&CO/default_imgs/club-img-default.png";
+            if($user->accounts_image_id === null){
+                $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
+            }
             return view('User.user', compact('user'));
+        }
+    }
+
+    public function changeUserImage(Request $request)
+    {
+        $accounts_images = DB::table('accounts_images')
+            ->where('accounts_images.id','=', $request['imgId'])->first();
+        if($accounts_images === null){
+            return response()->json(['data' => 'error image doen\'t exist']);
+        }else{
+            $user = User::find(Auth::id());
+            $user->accounts_image_id = $request['imgId'];
+            $user->update();
+
+            return response()->json(['data' => $accounts_images]);
+        }
+    }
+
+    public function findTeam(Request $request)
+    {
+        $team = DB::table('club')
+            ->where('nom_club', 'like', $request['nom_club'].'%')
+            ->select('club.id_club as id','club.nom_club as nom','club.url_club as img')
+            ->get();
+        return response()->json(['data' => $team]);
+    }
+    public function changeTeam(Request $request){
+        $club = DB::table('club')
+            ->where('club.id_club','=', $request['club_id'])->first();
+        if($club === null){
+            return response()->json(['data' => 'error club doen\'t exist']);
+        }else{
+            $user = User::find(Auth::id());
+            $user->club_id = $request['club_id'];
+            $user->update();
+
+            return response()->json(['data' => $club]);
         }
     }
 

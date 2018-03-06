@@ -37,6 +37,7 @@ p{
     --main-shadow: 0 10px 20px rgba(0,0,0,0.20), 0 6px 6px rgba(0,0,0,0.25);
     --border-neon: 2px solid var(--bleu-neon);
     --shadow-icons: drop-shadow(0px 5px 2px rgba(0,0,0,.75));
+    --shadow-bg-icons: drop-shadow(0px 3px 2px rgba(0,0,0,.75)) drop-shadow(0px 10px 5px rgba(0,0,0,.35));
 }
 @font-face {
     font-family: 'Orkney Light';
@@ -61,7 +62,7 @@ p{
 html,body{
     width: 100%;
     height: 100%;
-    background: var(--bleu-fond) url('../2Weeks_Images/2WeeksBC.jpg')no-repeat 50% 50% / cover;
+    background: var(--bleu-fond) url('../STATS&CO/2WeeksBC.jpg')no-repeat 50% 50% / cover;
     background-attachment: fixed;
 }
 
@@ -172,7 +173,7 @@ html,body{
     width:32px!important;
     height:100%;
     display: block;
-    background: transparent url('../2Weeks_Images/Auth/exit.png')no-repeat 50% 50% / contain;
+    background: transparent url('../STATS&CO/Auth/exit.png')no-repeat 50% 50% / contain;
 }
 
 #fp-nav ul li a span,
@@ -306,10 +307,10 @@ html,body{
     height: 128px;
     margin: auto;
 
-    -webkit-filter: var(--shadow-icons);
-    -moz-filter: var(--shadow-icons);
-    -ms-filter: var(--shadow-icons);
-    -o-filter: var(--shadow-icons);
-    filter: var(--shadow-icons);
+    -webkit-filter: var(--shadow-bg-icons);
+    -moz-filter: var(--shadow-bg-icons);
+    -ms-filter: var(--shadow-bg-icons);
+    -o-filter: var(--shadow-bg-icons);
+    filter: var(--shadow-bg-icons);
     margin-bottom: 25px;
 }
