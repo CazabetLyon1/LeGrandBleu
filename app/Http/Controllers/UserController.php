@@ -53,6 +53,15 @@ class UserController extends Controller
             return response()->json(['data' => $accounts_images]);
         }
     }
+
+    public function findTeam(Request $request)
+    {
+        $team = DB::table('club')
+            ->where('nom_club', 'like', $request['nom_club'].'%')
+            ->select('club.id_club as id','club.nom_club as nom','club.url_club as img')
+            ->get();
+        return response()->json(['data' => $team]);
+    }
     /**
      * Show the form for creating a new resource.
      *

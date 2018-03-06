@@ -122,7 +122,8 @@ body{
 	position: relative;
 	width: calc(100% / 4);
 	height: calc(229.991px / 4);
-	
+	perspective: 100px;
+	-webkit-perspective: 100px;
 	float: left;
 }
 .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content{
@@ -144,11 +145,11 @@ body{
 	-ms-border-radius: 3px;
 	-o-border-radius: 3px;
 
-	transform: rotateY(-90deg);
-	-webkit-transform: rotateY(-90deg);
-	-moz-transform: rotateY(-90deg);
-	-ms-transform: rotateY(-90deg);
-	-o-transform: rotateY(-90deg);
+	transform: rotateY(-100deg) rotateZ(-90deg);
+	-webkit-transform: rotateY(-100deg) rotateZ(-90deg);
+	-moz-transform: rotateY(-100deg) rotateZ(-90deg);
+	-ms-transform: rotateY(-100deg) rotateZ(-90deg);
+	-o-transform: rotateY(-100deg) rotateZ(-90deg);
 
 	opacity: 0;
 	transition: 0.3s ease-in-out;
@@ -162,11 +163,13 @@ body{
 }
 .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content.animate{
 	opacity: 1;
-	transform: rotateY(0deg);
-	-webkit-transform: rotateY(0deg);
-	-moz-transform: rotateY(0deg);
-	-ms-transform: rotateY(0deg);
-	-o-transform: rotateY(0deg);
+	transform: rotateY(0deg) rotateZ(0deg);
+	-webkit-transform: rotateY(0deg) rotateZ(0deg);
+	-moz-transform: rotateY(0deg) rotateZ(0deg);
+	-ms-transform: rotateY(0deg) rotateZ(0deg);
+	-o-transform: rotateY(0deg) rotateZ(0deg);
+
+
 }
 .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item .popUpSearch-item-content:hover{
 	background-color: rgba(0, 0, 0, .25);

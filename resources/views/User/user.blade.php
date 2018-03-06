@@ -12,6 +12,7 @@
             var token = '{{ Session::token() }}';
             var url = '{{route('accounts_images')}}';
             var url1 = '{{route('change_accounts_images')}}';
+            var url2 = '{{route('search_accounts_team')}}';
         </script>
         {!! Html::script('js/popUpJs/searchPopUp_plugin.js') !!}
         {!! Html::script('js/userPage.js') !!}

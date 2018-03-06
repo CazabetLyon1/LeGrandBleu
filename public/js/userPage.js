@@ -9,17 +9,25 @@ $('document').ready(function(){
         activeBubble: false
     });
 
-    /*$('body').searchPopUp_plugin({
+    $('body').searchPopUp_plugin({
+        dataUrl:url2,
         mainContainer: '#favorite-team-content',
         needActivate: true,
         popUpPositionButton: "right",
         popUpPositionAlign: "center",
         activateAttr: ".logo-favorite-team-popUp",
         searchActive: true,
-        activeBubble: false
-    });*/
+        activeBubble: true
+    });
 
-    $('body').on('click', '.popUpSearch-item-icon', function () {
+
+    $('body').on('click', '#favorite-team-content .popUpSearch-item-icon', function () {
+        $this = $(this);
+        var changeImg = $this.attr('data-id-spopup');
+        alert(changeImg);
+    });
+
+    $('body').on('click', '#account-status .popUpSearch-item-icon', function () {
         $this = $(this);
         var changeImg = $this.attr('data-nom-team');
 
@@ -28,7 +36,6 @@ $('document').ready(function(){
             url: url1,
             data: {imgId: changeImg, _token: token},
             success: function (msg) {
-                console.log(msg.data);
                 $("#account-status .header").css('background-image', 'url('+msg.data.avatar_url+')');
                 $("#nav-account-icon").css('background-image', 'url('+msg.data.avatar_url+')');
             }

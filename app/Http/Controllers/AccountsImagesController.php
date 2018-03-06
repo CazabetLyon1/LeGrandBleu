@@ -28,7 +28,7 @@ class AccountsImagesController extends Controller
     public function getAllImages(Request $request)
     {
         $accounts_images = DB::table('accounts_images')
-            ->select('accounts_images.id as nom', 'accounts_images.avatar_url as img')
+            ->select('accounts_images.id as id', 'accounts_images.id as nom', 'accounts_images.avatar_url as img')
             ->get();
         return response()->json(['data' => $accounts_images]);
 

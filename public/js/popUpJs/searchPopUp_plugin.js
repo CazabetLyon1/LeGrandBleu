@@ -44,8 +44,22 @@
 
 			var activationToggle = false;
 			var actPos = $(settings.activateAttr).position();
+            var entityMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '/': '&#x2F;',
+                '`': '&#x60;',
+                '=': '&#x3D;'
+            };
 
             initAll();
+
+            $(window).click(function () {
+                closeSearchPopUp();
+            });
 
 			function initAll(){
                 createBase();
@@ -60,6 +74,11 @@
 				}
 			}
 
+            function escapeHtml(string) {
+                return String(string).replace(/[&<>"'`=]/g, function (s) {
+                    return '\\'+entityMap[s];
+                });
+            }
 			function directAffiche(){
                 $('body').on('click', ''+settings.mainContainer+' '+settings.activateAttr, function () {
                     removeContent();
@@ -74,48 +93,59 @@
                 });
 
 			}
+			function closeSearchPopUp(){
+                $(settings.mainContainer+' .popUpSearch').css('display', 'none');
+                activationToggle = false;
+            }
+            function openSearchPopUp(){
+                $(settings.mainContainer+' .popUpSearch').css('display', 'block');
+                activationToggle = true;
+            }
 
-			function needActivation(){
+                function needActivation(){
 				if(settings.needActivate){
-					$('.popUpSearch').css('display', 'none');
+					$(settings.mainContainer+' .popUpSearch').css('display', 'none');
 					positionButtonPopUp();
-					$('body').on('click', settings.activateAttr, function(){
+					$('body').on('click', settings.activateAttr, function(e){
 						if(activationToggle){
-							$('.popUpSearch').css('display', 'none');
-							activationToggle = false;
+                            closeSearchPopUp();
 						}else{
-							$('.popUpSearch').css('display', 'block');
-							activationToggle = true;
+                            openSearchPopUp();
 						}
-					});
-					
+                        e.stopPropagation();
+                    });
+					//pour ne pas fermer le popup lorsque l'on click à l'interieur
+                    $('body').on('click', settings.mainContainer+' .popUpSearch , '+settings.mainContainer+' .popUpSearch *', function(e){
+                        e.stopPropagation();
+                    });
+
 				}else{
-					$('.popUpSearch').css('display', 'block');
+					$(settings.mainContainer+' .popUpSearch').css('display', 'block');
 				}
 			}
 
 			function positionButtonPopUp() {
-		    	$('.popUpSearch').css('position','absolute');
+		    	$(settings.mainContainer+' .popUpSearch').css('position','absolute');
                 var posLeft = actPos.left + parseInt($(settings.activateAttr).css('marginLeft'));
                 var postop = actPos.top + parseInt($(settings.activateAttr).css('marginTop'));
 
 				switch(settings.popUpPositionButton) {
 				    case "top":
 					    positionHAlignPopUp();
-				    	$('.popUpSearch').css('top',postop - $('.popUpSearch').outerHeight() -10);
+				    	$(settings.mainContainer+' .popUpSearch').css('top',postop - $(settings.mainContainer+' .popUpSearch').outerHeight() -10);
 				        break;
 				    case "right":
 					    positionVAlignPopUp();
 
-				    	$('.popUpSearch').css('left',posLeft + $(settings.activateAttr).outerWidth() + 10);
+				    	$(settings.mainContainer+' .popUpSearch').css('left',posLeft + $(settings.activateAttr).outerWidth() + 10);
 				        break;
 			        case "bottom":
 					    positionHAlignPopUp();
-				        $('.popUpSearch').css('top',postop + $(settings.activateAttr).outerHeight() + 10);
+				        $(settings.mainContainer+' .popUpSearch').css('top',postop + $(settings.activateAttr).outerHeight() + 10);
 				        break;
 			        case "left":
 					    positionVAlignPopUp();
-				    	$('.popUpSearch').css('left',posLeft - 250 -10);
+				    	$(settings.mainContainer+' .popUpSearch').css('left',posLeft - 250 -10);
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionButton] arg need to be "top","right","bottom" or "left" \n|-your arg : "'+settings.popUpPositionButton+'"\n+----------');
@@ -127,13 +157,13 @@
 				var posLeft = actPos.left + parseInt($(settings.activateAttr).css('marginLeft'));
 				switch(settings.popUpPositionAlign) {
 				    case "start":
-				    	$('.popUpSearch').css('left',posLeft);
+				    	$(settings.mainContainer+' .popUpSearch').css('left',posLeft);
 				        break;
 				    case "center":
-				    	$('.popUpSearch').css('left',posLeft -( ( 250/2 ) - ( $(settings.activateAttr).outerWidth() / 2 ) ) );
+				    	$(settings.mainContainer+' .popUpSearch').css('left',posLeft -( ( 250/2 ) - ( $(settings.activateAttr).outerWidth() / 2 ) ) );
 				        break;
 			        case "end":
-				    	$('.popUpSearch').css('left',posLeft - (250 - $(settings.activateAttr).outerWidth() ) );
+				    	$(settings.mainContainer+' .popUpSearch').css('left',posLeft - (250 - $(settings.activateAttr).outerWidth() ) );
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionAlign] arg need to be "start","center" or "end" \n|-your arg : "'+settings.popUpPositionAlign+'"\n+----------');
@@ -144,13 +174,13 @@
                 var postop = actPos.top + parseInt($(settings.activateAttr).css('marginTop'));
                 switch(settings.popUpPositionAlign) {
 				    case "start":
-				    	$('.popUpSearch').css('top',postop);
+				    	$(settings.mainContainer+' .popUpSearch').css('top',postop);
 				        break;
 				    case "center":
-				    	$('.popUpSearch').css('top',postop - ( (  $('.popUpSearch').outerHeight()/2 ) - ( $(settings.activateAttr).outerHeight() / 2 ) ) );
+				    	$(settings.mainContainer+' .popUpSearch').css('top',postop - ( (  $(settings.mainContainer+' .popUpSearch').outerHeight()/2 ) - ( $(settings.activateAttr).outerHeight() / 2 ) ) );
 				        break;
 			        case "end":
-				    	$('.popUpSearch').css('top',postop - ( $('.popUpSearch').outerHeight() - $(settings.activateAttr).outerHeight()) );
+				    	$(settings.mainContainer+' .popUpSearch').css('top',postop - ( $(settings.mainContainer+' .popUpSearch').outerHeight() - $(settings.activateAttr).outerHeight()) );
 				        break;
 				    default:
 				        console.log('+----------\n|searchPopUp_plugin error :\n+----------\n|-[popUpPositionAlign] arg need to be "start","center" or "end" \n|-your arg : "'+settings.popUpPositionAlign+'"\n+----------');
@@ -185,15 +215,15 @@
 			function appendItem($value){
 				var itemHtml = '<div class="popUpSearch-item">'+
 							'<div class="popUpSearch-item-content">'+
-								'<div data-nom-team="'+$value.nom+'" class="popUpSearch-item-icon" style="background: transparent url(\''+$value.img+'\')no-repeat 50% 50% / contain;"></div>'+
+								'<div data-nom-team="'+$value.nom+'" data-id-spopup="'+escapeHtml($value.id)+'" class="popUpSearch-item-icon" style="background: transparent url(\''+escapeHtml($value.img)+'\')no-repeat 50% 50% / contain;"></div>'+
 							'</div>'+
 						'</div>';
-				$('.popUpSearch  .popUpSearch-itemsContainer').prepend(itemHtml);
+				$(settings.mainContainer+' .popUpSearch  .popUpSearch-itemsContainer').prepend(itemHtml);
 			}
 
 			function animateApparition(){
 				var delays = 0;
-				$('.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item').each(function(){
+				$(settings.mainContainer+' .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item').each(function(){
 					$(this).find('.popUpSearch-item-content').delay(delays).queue(function(next) {
 						$(this).addClass("animate");
 						next();
@@ -210,7 +240,7 @@
 				bubbleMove();
 			}
 			function bubbleMove(){
-				$('body').on('mousemove', '.popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item', function(event){
+				$('body').on('mousemove', settings.mainContainer+' .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item', function(event){
 					$this = $(this);
 					$('.popUpSearch-nameBubble span').text($this.find('.popUpSearch-item-icon').attr("data-nom-team"));
 					$('.popUpSearch-nameBubble').addClass('show');
@@ -219,7 +249,7 @@
 					$('.popUpSearch-nameBubble').css('left', posX);
 				});
 
-				$('body').on('mouseleave', '.popUpSearch  .popUpSearch-itemsContainer', function(){
+				$('body').on('mouseleave', settings.mainContainer+' .popUpSearch  .popUpSearch-itemsContainer', function(){
 					$this = $(this);
 					$('.popUpSearch-nameBubble span').text("");
 					$('.popUpSearch-nameBubble').removeClass('show');
@@ -227,18 +257,26 @@
 			}
 
 			function removeContent(){
-				$('.popUpSearch  .popUpSearch-itemsContainer').html("");
+				$(settings.mainContainer+' .popUpSearch  .popUpSearch-itemsContainer').html("");
 			}
 
 			function search(){
-				$('body').on('input','.popUpSearch .popUpSearch-input-content input[name="search-team"]',function(e){
+				$('body').on('input',settings.mainContainer+' .popUpSearch .popUpSearch-input-content input[name="search-team"]',function(e){
 					$this = $(this);
 
 					var valeur = $this.val();
+
 					removeContent();
 					if(valeur.length > 0 ){
 
-						drawIcon(data);
+                        $.ajax({
+                            method: 'POST',
+                            url: url2,
+                            data: {nom_club: valeur, _token: token},
+                            success: function (msg) {
+                                drawIcon(msg.data);
+                            }
+                        });
 
 					}else{
 
