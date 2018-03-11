@@ -34,6 +34,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function image()
+    {
+        return $this->belongsTo('App\Models\Accounts_image', 'account_image_id');
+    }
     public function accounts_image()
     {
         return $this->belongsTo('App\Models\Accounts_image');

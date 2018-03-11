@@ -66,11 +66,94 @@ class clubUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+
     }
 
+    public static function getFactorial($num)
+    {
+        $fact = 1;
+        for($i = 1; $i <= $num ;$i++)
+            $fact = $fact * $i;
+        return $fact;
+    }
+
+
+    public function nbBut()
+    {
+        //Lyon
+        $nbButLyonDomicile = DB::table('rencontre')->where('equipe_domicile','=', 18)->sum('but_domicile');
+        $nbButLyonPrisExterieur = DB::table('rencontre')->where('equipe_exterieur','=', 18)->sum('but_domicile');
+        $nbMatchLyonDomicile = DB::table('rencontre')->where('equipe_domicile','=', 18)->count();
+        $nbMatchLyonExterieur = DB::table('rencontre')->where('equipe_exterieur','=', 18)->count();
+        $nbButDomicile = DB::table('rencontre')->sum('but_domicile');
+        $nbMatchDomicile = DB::table('rencontre')->count();
+        $calcDomicileEquipe = $nbButLyonDomicile/$nbMatchLyonDomicile;
+        $calcDomicileTotal = $nbButDomicile/$nbMatchDomicile;
+        $calcConcedeEquipe = $nbButLyonPrisExterieur/$nbMatchLyonExterieur;
+
+        $nbButLyonDomicile2 = DB::table('rencontre')->where('equipe_domicile','=', 3)->sum('but_domicile');
+        $nbButLyonPrisExterieur2 = DB::table('rencontre')->where('equipe_exterieur','=', 3)->sum('but_domicile');
+        $nbMatchLyonDomicile2 = DB::table('rencontre')->where('equipe_domicile','=', 3)->count();
+        $nbMatchLyonExterieur2 = DB::table('rencontre')->where('equipe_exterieur','=', 3)->count();
+        $nbButDomicile2 = DB::table('rencontre')->sum('but_domicile');
+        $nbMatchDomicile2 = DB::table('rencontre')->count();
+        $calcDomicileEquipe2 = $nbButLyonDomicile2/$nbMatchLyonDomicile2;
+        $calcDomicileTotal2 = $nbButDomicile2/$nbMatchDomicile2;
+        $calcConcedeEquipe2 = $nbButLyonPrisExterieur2/$nbMatchLyonExterieur2;
+        $U = ($calcDomicileEquipe2/$calcDomicileTotal2) * ($calcConcedeEquipe/$calcDomicileTotal) * ($calcDomicileEquipe/$calcDomicileTotal);
+        $U2 =  ($calcDomicileEquipe/$calcDomicileTotal) * ($calcConcedeEquipe2/$calcDomicileTotal2) * ($calcDomicileEquipe2/$calcDomicileTotal2);
+
+        dd(['Paris SG'=> [
+            'Paris SG buts à domicile' => $nbButLyonDomicile,
+            'Paris SG matchs à domicile' => $nbMatchLyonDomicile,
+            'nb Buts à domicile / nb de matchs à domicile' => $calcDomicileEquipe,
+            'nb buts à domicile' => $nbButDomicile,
+            'nb matchs à domicile' => $nbMatchDomicile,
+            'nb Buts à domicile / 2nb de matchs à domicile' => $calcDomicileTotal,
+            'FORCE D\'ATT : '.$calcDomicileEquipe.' / '.$calcDomicileTotal => $calcDomicileEquipe/$calcDomicileTotal,
+            'Paris SG buts pris à exterieur' => $nbButLyonPrisExterieur,
+            'Paris SG matchs à exterieur' => $nbMatchLyonExterieur,
+            'nb Buts concede à ext / nb de matchs à exterieur' => $calcConcedeEquipe,
+            'FORCE DE DEF : '.$calcConcedeEquipe.' / '.$calcDomicileTotal => $calcConcedeEquipe/$calcDomicileTotal,
+            ],
+
+            'Marseille'=>[
+            'Marseille buts à domicile' => $nbButLyonDomicile2,
+            'Marseille matchs à domicile' => $nbMatchLyonDomicile2,
+            'nb Buts à domicile / nb de matchs à domicile' => $calcDomicileEquipe2,
+            'nb buts à domicile' => $nbButDomicile2,
+            'nb matchs à domicile' => $nbMatchDomicile2,
+            'nb Buts à domicile / 2nb de matchs à domicile' => $calcDomicileTotal2,
+            'FORCE D\'ATT : '.$calcDomicileEquipe2.' / '.$calcDomicileTotal2 => $calcDomicileEquipe2/$calcDomicileTotal2,
+            'real Madrid buts pris à exterieur' => $nbButLyonPrisExterieur2,
+            'Marseille matchs à exterieur' => $nbMatchLyonExterieur2,
+            'nb Buts concede à ext / nb de matchs à exterieur' => $calcConcedeEquipe2,
+            'FORCE DE DEF : '.$calcConcedeEquipe2.' / '.$calcDomicileTotal2 => $calcConcedeEquipe2/$calcDomicileTotal2,
+            ],
+            'Rencontre : Dom PARIS SG -> Ext MARSEILLE' => [
+                'ATT Eqp Ext * DEF Eqp Dom * ATT Eqp Dom' => $U,
+                'ATT Eqp Dom * DEF Eqp Ext * ATT Eqp Ext' => $U2,
+                'Proba But Lyon' => [
+                    '1 but' => (exp(1) - $U)*($U*(1))/$this->getFactorial(1)*10,
+                    '2 but' => (exp(1) - $U)*($U*(2))/$this->getFactorial(2)*10,
+                    '3 but' => (exp(1) - $U)*($U*(3))/$this->getFactorial(3)*10,
+                    '4 but' => (exp(1) - $U)*($U*(4))/$this->getFactorial(4)*10,
+                    '5 but' => (exp(1) - $U)*($U*(5))/$this->getFactorial(5)*10
+                ],
+                'Proba But Marseille' => [
+                    '1 but' => (exp(1) - $U2)*($U2*(1))/$this->getFactorial(1)*10,
+                    '2 but' => (exp(1) - $U2)*($U2*(2))/$this->getFactorial(2)*10,
+                    '3 but' => (exp(1) - $U2)*($U2*(3))/$this->getFactorial(3)*10,
+                    '4 but' => (exp(1) - $U2)*($U2*(4))/$this->getFactorial(4)*10,
+                    '5 but' => (exp(1) - $U2)*($U2*(5))/$this->getFactorial(5)*10
+                ],
+
+            ]
+        ]);
+
+    }
+/*(exp(1) - $U)($U*1)/*/
     /**
      * Show the form for editing the specified resource.
      *
