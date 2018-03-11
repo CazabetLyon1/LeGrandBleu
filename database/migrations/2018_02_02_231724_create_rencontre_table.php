@@ -26,7 +26,7 @@ class CreateRencontreTable extends Migration
             $table->integer('but_mitemps_domicile');
             $table->integer('but_mitemps_exterieur');
             $table->string('resultat_mitemps');
-            $table->string('nom_arbitre');
+            $table->string('nom_arbitre')->nullable();
             $table->integer('tir_domicile');
             $table->integer('tir_exterieur');
             $table->integer('tirCadre_domicile');

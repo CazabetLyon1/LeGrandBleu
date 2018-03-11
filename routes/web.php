@@ -35,3 +35,4 @@ Route::post('/change_accounts_team', 'UserController@changeTeam')->name('change_
 
 Route::get('/ClubUpload', 'clubUploadController@index')->name('ClubUpload');
 Route::post('/store', 'clubUploadController@store')->name('store');
+Route::get('/nbBut', 'clubUploadController@nbBut')->name('nbBut');
