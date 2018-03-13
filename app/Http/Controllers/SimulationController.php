@@ -122,74 +122,53 @@ class SimulationController extends Controller
         (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
         ORDER BY id_match DESC');
 
-        $divisionMajoritaire = DB::select('SELECT division, count(*) as nbOccurence from rencontres 
-        WHERE (equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.') 
-        OR 
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
-        GROUP BY division ORDER BY count(*) DESC');
-
-        $divisionMajoritaire = $divisionMajoritaire[0]->division;
-
         /***** LOI DE POISSON *****/
         $nbButLyonDomicile = DB::table('rencontres')->where([
                 ['equipe_domicile','=', $clubDomicile->id_club],
-                ['division', '=', $divisionMajoritaire],
                 ['annee', '=', '2016']
-            ])->sum('but_domicile');
+        ])->sum('but_domicile');
         $nbButLyonPrisExterieur = DB::table('rencontres')->where([
             ['equipe_exterieur','=', $clubDomicile->id_club],
-            ['division', '=', $divisionMajoritaire],
             ['annee', '=', '2016']
-            ])->sum('but_domicile');
+        ])->sum('but_domicile');
         $nbMatchLyonDomicile = DB::table('rencontres')->where([
             ['equipe_domicile','=', $clubDomicile->id_club],
-            ['division', '=', $divisionMajoritaire],
-            ['annee', '=', '2016']
-            ])->count();
+
+        ])->count();
         $nbMatchLyonExterieur = DB::table('rencontres')->where([
-                ['equipe_exterieur','=', $clubDomicile->id_club],
-                ['division', '=', $divisionMajoritaire],
+            ['equipe_exterieur','=', $clubDomicile->id_club],
             ['annee', '=', '2016']
-            ])->count();
+        ])->count();
         $nbButDomicile = DB::table('rencontres')->where([
-            ['division','=',$divisionMajoritaire],
             ['annee', '=', '2016']
-            ])->sum('but_domicile');
+        ])->sum('but_domicile');
         $nbMatchDomicile = DB::table('rencontres')->where([
-            ['division','=',$divisionMajoritaire],
             ['annee', '=', '2016']
         ])->count();
         $calcDomicileEquipe = $nbButLyonDomicile/$nbMatchLyonDomicile;
         $calcDomicileTotal = $nbButDomicile/$nbMatchDomicile;
         $calcConcedeEquipe = $nbButLyonPrisExterieur/$nbMatchLyonExterieur;
 
-
         $nbButLyonDomicile2 = DB::table('rencontres')->where([
             ['equipe_domicile','=', $clubExterieur->id_club],
-            ['division', '=', $divisionMajoritaire],
             ['annee', '=', '2016']
         ])->sum('but_domicile');
         $nbButLyonPrisExterieur2 = DB::table('rencontres')->where([
             ['equipe_exterieur','=', $clubExterieur->id_club],
-            ['division', '=', $divisionMajoritaire],
             ['annee', '=', '2016']
         ])->sum('but_domicile');
         $nbMatchLyonDomicile2 = DB::table('rencontres')->where([
             ['equipe_domicile','=', $clubExterieur->id_club],
-            ['division', '=', $divisionMajoritaire],
             ['annee', '=', '2016']
         ])->count();
         $nbMatchLyonExterieur2 = DB::table('rencontres')->where([
             ['equipe_exterieur','=', $clubExterieur->id_club],
-            ['division', '=', $divisionMajoritaire],
             ['annee', '=', '2016']
         ])->count();
         $nbButDomicile2 = DB::table('rencontres')->where([
-            ['division','=',$divisionMajoritaire],
             ['annee', '=', '2016']
         ])->sum('but_domicile');
         $nbMatchDomicile2 = DB::table('rencontres')->where([
-            ['division','=',$divisionMajoritaire],
             ['annee', '=', '2016']
         ])->count();
 
