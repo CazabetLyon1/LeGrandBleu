@@ -105,13 +105,13 @@ class SimulationController extends Controller
         /***** INFO CLUB DOMICILE & EXTERIEUR *****/
         $clubDomicile = DB::table('clubs')
             ->where([
-                ['url_club','=',$url_club_domicile],
+                ['url_nom','=',$url_club_domicile],
             ])
             ->first();
 
         $clubExterieur = DB::table('clubs')
             ->where([
-                ['url_club','=',$url_club_exterieur],
+                ['url_nom','=',$url_club_exterieur],
             ])
             ->first();
 
@@ -194,7 +194,7 @@ class SimulationController extends Controller
 
         /***** CHART 1 *****/
         $chart1 = new SampleChart;
-        $chart1->labels(['0','1','2','3','4','5'])
+        $chart1->labels(['0 but','1 but','2 buts','3 buts','4 buts','5 buts'])
             ->height(200)
             ->options([
                 'legend' => [
@@ -273,5 +273,10 @@ class SimulationController extends Controller
         for ($n = $num; $n >= 1; $n--)
             $res = $res*$n;
         return $res;
+    }
+
+    public function getUrl($string)
+    {
+
     }
 }

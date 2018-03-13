@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration {
             //Foreign key
             $table->foreign('club_id')
                 ->references('id_club')
-                ->on('club')
+                ->on('clubs')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

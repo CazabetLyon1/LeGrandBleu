@@ -19,14 +19,18 @@
     <div class="section container-fluid container-perso">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h1>Simulation de rencontre sportive</h1>
+                <h1 class="visible-md">Simulation de rencontre sportive</h1>
+                <p class="noUpper">Choississez les deux équipes qui s'affronteront et cliquez pour commencer la simulation !</p>
+            </div>
+            <div class="col-md-12 text-center" id="boutonValiderSimulation">
+                <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
             </div>
         </div>
         <div class="row block">
 
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12 text-center"><h4><i class="fa fa-user-circle"></i> equipe domicile</h4></div>
+                    <div class="col-md-12 text-center"><h4><i class="fa fa-home"></i> equipe domicile</h4></div>
                 </div>
                 <div class="row text-center">
                     <div id="carouselPaysDom" class="carousel" data-ride="carousel" data-interval="0">
@@ -73,10 +77,10 @@
                     </div>
                 </div>
             </div>
-
+            <hr class="visible-xs small">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12 text-center"><h4><i class="fa fa-user-circle"></i> equipe exterieure</h4></div>
+                    <div class="col-md-12 text-center"><h4><i class="fa fa-bus"></i> equipe exterieure</h4></div>
                 </div>
                 <div class="row text-center">
                     <div id="carouselPaysExt" class="carousel" data-ride="carousel" data-interval="0">
@@ -89,6 +93,7 @@
                                 <p id="<?php echo $objPays->pays;?>"><?php echo $objPays->pays;?></p>
                             </div>
                             <?php } ?>
+
                         </div>
 
                         <!-- Left and right controls -->
@@ -121,10 +126,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-12 text-center">
-                <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
             </div>
         </div>
     </div>

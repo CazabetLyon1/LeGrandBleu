@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 
-class CreateClubTable extends Migration {
+class CreateClubsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateClubTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('club', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id_club');
             $table->string('nom_club');
+            $table->string('url_nom');
+            $table->integer('fondation');
+            $table->string('entraineur');
+            $table->string('president');
+            $table->string('stade');
             $table->string('url_club');
             $table->string('nom_ville')->nullable();
             $table->enum('pays',['France','Espagne', 'Allemagne', 'Italie', 'Angleterre']);
@@ -30,6 +35,6 @@ class CreateClubTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('club');
+        Schema::dropIfExists('clubs');
     }
 }

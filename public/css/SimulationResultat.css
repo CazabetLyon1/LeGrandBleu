@@ -1,5 +1,5 @@
-.block {
-    margin: 15px;
+.container-perso {
+    margin-top : 90px;
 }
 
 .nom-club-result {
@@ -36,8 +36,8 @@ p {
 
 .logo-club-title {
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 128px;
+    height: 128px;
     margin: auto;
 }
 
@@ -50,12 +50,20 @@ p {
     margin-bottom: 10px;
 }
 
-.detailsAlgos {
+.chartLoiDePoisson {
+    margin-top: 10px;
+}
+
+.noUpper {
+    text-transform: none;
+}
+
+.justify {
     text-align: justify;
 }
 
-.chartLoiDePoisson {
-    margin-top: 10px;
+.statTeam {
+    margin-top: 50px;
 }
 
 
