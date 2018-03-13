@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 use App\Club;
-use Charts;
+use App\Charts\SampleChart;
 
 class SimulationController extends Controller
 {
@@ -120,104 +120,123 @@ class SimulationController extends Controller
         WHERE (equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.') 
         OR 
         (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
-        ORDER BY id_match');
+        ORDER BY id_match DESC');
 
-        /***** CHART 1 *****/
-        $nbAllMatch = DB::table('rencontres')
-            ->where('division','=','F1')
-            ->count();
+        $divisionMajoritaire = DB::select('SELECT division, count(*) as nbOccurence from rencontres 
+        WHERE (equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.') 
+        OR 
+        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
+        GROUP BY division ORDER BY count(*) DESC');
 
-        $nbButDomicile = DB::table('rencontres')
-            ->where('division','=','F1')
-            ->sum('but_domicile');
-        $nbButExterieur = DB::table('rencontres')
-            ->where('division','=','F1')
-            ->sum('but_exterieur');
+        $divisionMajoritaire = $divisionMajoritaire[0]->division;
 
-        $nbButMoyenMarqueDomicile = $nbButDomicile / $nbAllMatch;
-        $nbButMoyenMarqueExterieur = $nbButExterieur / $nbAllMatch;
+        /***** LOI DE POISSON *****/
+        $nbButLyonDomicile = DB::table('rencontres')->where([
+                ['equipe_domicile','=', $clubDomicile->id_club],
+                ['division', '=', $divisionMajoritaire],
+                ['annee', '=', '2016']
+            ])->sum('but_domicile');
+        $nbButLyonPrisExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur','=', $clubDomicile->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+            ])->sum('but_domicile');
+        $nbMatchLyonDomicile = DB::table('rencontres')->where([
+            ['equipe_domicile','=', $clubDomicile->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+            ])->count();
+        $nbMatchLyonExterieur = DB::table('rencontres')->where([
+                ['equipe_exterieur','=', $clubDomicile->id_club],
+                ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+            ])->count();
+        $nbButDomicile = DB::table('rencontres')->where([
+            ['division','=',$divisionMajoritaire],
+            ['annee', '=', '2016']
+            ])->sum('but_domicile');
+        $nbMatchDomicile = DB::table('rencontres')->where([
+            ['division','=',$divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->count();
+        $calcDomicileEquipe = $nbButLyonDomicile/$nbMatchLyonDomicile;
+        $calcDomicileTotal = $nbButDomicile/$nbMatchDomicile;
+        $calcConcedeEquipe = $nbButLyonPrisExterieur/$nbMatchLyonExterieur;
 
-        $nbButMoyenConcedeDomicile = $nbButMoyenMarqueExterieur;
-        $nbButMoyenConcedeExterieur = $nbButMoyenMarqueDomicile;
 
-        // Club Domicile
+        $nbButLyonDomicile2 = DB::table('rencontres')->where([
+            ['equipe_domicile','=', $clubExterieur->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbButLyonPrisExterieur2 = DB::table('rencontres')->where([
+            ['equipe_exterieur','=', $clubExterieur->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbMatchLyonDomicile2 = DB::table('rencontres')->where([
+            ['equipe_domicile','=', $clubExterieur->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->count();
+        $nbMatchLyonExterieur2 = DB::table('rencontres')->where([
+            ['equipe_exterieur','=', $clubExterieur->id_club],
+            ['division', '=', $divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->count();
+        $nbButDomicile2 = DB::table('rencontres')->where([
+            ['division','=',$divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbMatchDomicile2 = DB::table('rencontres')->where([
+            ['division','=',$divisionMajoritaire],
+            ['annee', '=', '2016']
+        ])->count();
 
-        //Force d'attaque domicile
-        $nbButMarqueClubDomicile = DB::table('rencontres')
-            ->where('equipe_domicile','=', $clubDomicile->id_club)
-            ->sum('but_domicile');
+        $calcDomicileEquipe2 = $nbButLyonDomicile2/$nbMatchLyonDomicile2;
+        $calcDomicileTotal2 = $nbButDomicile2/$nbMatchDomicile2;
+        $calcConcedeEquipe2 = $nbButLyonPrisExterieur2/$nbMatchLyonExterieur2;
 
-        $nbMatchClubDomicile = DB::table('rencontres')
-            ->where('equipe_domicile','=', $clubDomicile->id_club)
-            ->count();
+        $U = ($calcDomicileEquipe2/$calcDomicileTotal2) * ($calcConcedeEquipe/$calcDomicileTotal) * ($calcDomicileEquipe/$calcDomicileTotal);
+        $U2 =  ($calcDomicileEquipe/$calcDomicileTotal) * ($calcConcedeEquipe2/$calcDomicileTotal2) * ($calcDomicileEquipe2/$calcDomicileTotal2);
 
-        $forceAttaqueClubDomicile = ($nbButMarqueClubDomicile / $nbMatchClubDomicile) / $nbButMoyenMarqueDomicile;
-
-        //Potentiel défense exterieur
-        $nbButConcedeClubExterieur = DB::table('rencontres')
-            ->where('equipe_exterieur','=', $clubExterieur->id_club)
-            ->sum('but_domicile');
-
-        $nbMatchClubExterieur = DB::table('rencontres')
-            ->where('equipe_exterieur','=', $clubExterieur->id_club)
-            ->count();
-
-        $potentielDefenseClubExterieur = ($nbButConcedeClubExterieur / $nbMatchClubExterieur) / $nbButMoyenConcedeExterieur;
-        $nbButClubDomicile = $forceAttaqueClubDomicile * $potentielDefenseClubExterieur * $nbButMoyenMarqueDomicile;
-
-        // Club Exterieur
-
-        //Force d'attaque exterieur
-        $nbButMarqueClubExterieur = DB::table('rencontres')
-            ->where('equipe_exterieur','=', $clubExterieur->id_club)
-            ->sum('but_exterieur');
-
-        $nbMatchClubExterieur = DB::table('rencontres')
-            ->where('equipe_exterieur','=', $clubExterieur->id_club)
-            ->count();
-
-        $forceAttaqueClubExterieur = ($nbButMarqueClubExterieur / $nbMatchClubExterieur) / $nbButMoyenMarqueExterieur;
-
-        //Potentiel défense domicile
-        $nbButConcedeClubDomicile = DB::table('rencontres')
-            ->where('equipe_domicile','=', $clubDomicile->id_club)
-            ->sum('but_exterieur');
-
-        $nbMatchClubDomicile = DB::table('rencontres')
-            ->where('equipe_domicile','=', $clubDomicile->id_club)
-            ->count();
-
-        $potentielDefenseClubDomicile = ($nbButConcedeClubDomicile / $nbMatchClubDomicile) / $nbButMoyenConcedeDomicile;
-
-        $nbButClubExterieur = $forceAttaqueClubExterieur * $potentielDefenseClubDomicile * $nbButMoyenMarqueExterieur;
-
-        // LOI POISSON DOMICILE
+        $forceAttDomicile = number_format($calcDomicileEquipe/$calcDomicileTotal,2);
+        $forceAttExterieur = number_format($calcConcedeEquipe/$calcDomicileTotal,2);
+        $potentielDefDomicile = number_format($calcDomicileEquipe2/$calcDomicileTotal2,2);
+        $potentielDefExterieur = number_format($calcConcedeEquipe2/$calcDomicileTotal2,2);
 
         $tabProbButDomicile = array();
-        for ($i = 0; $i <= 5; $i++)
-        {
-            echo ((exp(1) - $nbButClubDomicile) * ($nbButClubDomicile * $i) ) / $this->fact($i).'<br/>';
-            //$tabProbButDomicile[] = (exp(1) - $nbButClubDomicile) * ($nbButClubDomicile * $i) / $this->fact($i);
+        $tabProbButExterieur = array();
+
+        for($i = 0; $i <= 5; $i++) {
+            $tabProbButDomicile[] = (((exp(-$U))*(pow($U,$i)))/($this->getFactorial($i)))*100;
+            $tabProbButExterieur[] = (((exp(-$U))*(pow($U2,$i)))/($this->getFactorial($i)))*100;
         }
 
-        $chart1 = Charts::multi('line', 'chartjs')
-            ->title('')
-            ->dimensions(0,200)
-            ->colors(['#00ffff', '#a94244'])
-            ->labels(['1', '2', '3', '4', '5'])
-            ->dataset('Domicile', [50, 30, 20, 20, 19])
-            ->dataset('Exterieur', [20, 18, 10, 10, 24]);
-
-        /***** CHART 2 *****/
-        $chart2 = $this->chart2($clubDomicile, $clubExterieur);
+        /***** CHART 1 *****/
+        $chart1 = new SampleChart;
+        $chart1->labels(['0','1','2','3','4','5'])
+            ->height(200)
+            ->options([
+                'legend' => [
+                    'position' => 'bottom'
+                ]
+            ]);
+        $chart1->dataset($clubDomicile->nom_club, 'bar', $tabProbButDomicile)
+            ->options(['borderColor' => '#00ffff']);
+        $chart1->dataset($clubExterieur->nom_club, 'bar', $tabProbButExterieur)
+            ->options(['borderColor' => '#a94244']);
 
         /***** RETURN FUNCTION *****/
         return view('simulationResultat', [
             'clubDomicile' => $clubDomicile,
             'clubExterieur' => $clubExterieur,
             'rencontres' => $rencontres,
-            'chart1' => $chart1,
-            'chart2' => $chart2
+            'forceAttDomicile' => $forceAttDomicile,
+            'forceAttExterieur' => $forceAttExterieur,
+            'potentielDefDomicile' => $potentielDefDomicile,
+            'potentielDefExterieur' => $potentielDefExterieur,
+            'chart1' => $chart1
         ]);
     }
 
@@ -269,13 +288,11 @@ class SimulationController extends Controller
         return $chart2;
     }
 
-    public function fact($num)
+    public function getFactorial($num)
     {
         $res = 1;
-        for ($i = 1; $i <= $num; $i++)
-        {
-            $res = $res * $i;
-        }
+        for ($n = $num; $n >= 1; $n--)
+            $res = $res*$n;
         return $res;
     }
 }

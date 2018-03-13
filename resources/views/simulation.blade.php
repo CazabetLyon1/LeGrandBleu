@@ -12,7 +12,7 @@
 @section('title') Stats&CO - Simulation de rencontre sportive @endsection
 
 @section('css')
-    {!! Html::style('css/Simulation.css') !!}
+    {!! Html::style('css/simulation.css') !!}
 @endsection
 
 @section('container')
@@ -26,7 +26,7 @@
 
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12"><h4><i class="fa fa-user-circle"></i> Équipe Domicile</h4></div>
+                    <div class="col-md-12 text-center"><h4><i class="fa fa-user-circle"></i> equipe domicile</h4></div>
                 </div>
                 <div class="row text-center">
                     <div id="carouselPaysDom" class="carousel" data-ride="carousel" data-interval="0">
@@ -36,9 +36,10 @@
 
                             <?php foreach ($pays as $objPays) { ?>
                                 <div class="item">
-                                    <p id="<?php echo $objPays->pays."_Dom";?>"><?php echo $objPays->pays;?></p>
+                                    <p id="<?php echo $objPays->pays;?>"><?php echo $objPays->pays;?></p>
                                 </div>
                             <?php } ?>
+
                         </div>
 
                         <!-- Left and right controls -->
@@ -54,18 +55,18 @@
                 </div>
                 <br />
                 <div class="row text-center">
-                    <div id="myCarousel2" class="carousel" data-ride="carousel" data-interval="0">
+                    <div id="carouselClubDom" class="carousel" data-ride="carousel" data-interval="0">
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+                        <a class="left carousel-control" href="#carouselClubDom" data-slide="prev">
                             <i class="fa fa-arrow-left"></i>
                             <span class="sr-only">Précédent</span>
                         </a>
-                        <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+                        <a class="right carousel-control" href="#carouselClubDom" data-slide="next">
                             <i class="fa fa-arrow-right"></i>
                             <span class="sr-only">Suivant</span>
                         </a>
@@ -75,27 +76,27 @@
 
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12"><h4><i class="fa fa-user-circle"></i> Équipe Extérieure</h4></div>
+                    <div class="col-md-12 text-center"><h4><i class="fa fa-user-circle"></i> equipe exterieure</h4></div>
                 </div>
                 <div class="row text-center">
-                    <div id="carouselPaysDo" class="carousel" data-ride="carousel" data-interval="0">
+                    <div id="carouselPaysExt" class="carousel" data-ride="carousel" data-interval="0">
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
 
                             <?php foreach ($pays as $objPays) { ?>
                             <div class="item">
-                                <p id="<?php echo $objPays->pays;?>Ext"><?php echo $objPays->pays;?></p>
+                                <p id="<?php echo $objPays->pays;?>"><?php echo $objPays->pays;?></p>
                             </div>
                             <?php } ?>
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#carouselPaysDo" data-slide="prev">
+                        <a class="left carousel-control" href="#carouselPaysExt" data-slide="prev">
                             <i class="fa fa-arrow-left"></i>
                             <span class="sr-only">Précédent</span>
                         </a>
-                        <a class="right carousel-control" href="#carouselPaysDom" data-slide="next">
+                        <a class="right carousel-control" href="#carouselPaysExt" data-slide="next">
                             <i class="fa fa-arrow-right"></i>
                             <span class="sr-only">Suivant</span>
                         </a>
@@ -103,24 +104,27 @@
                 </div>
                 <br />
                 <div class="row text-center">
-                    <div id="carouselChoixTeamExt" class="carousel" data-ride="carousel" data-interval="0">
+                    <div id="carouselClubExt" class="carousel" data-ride="carousel" data-interval="0">
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <div class="item">fs</div>
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#carouselChoixTeamExt" data-slide="prev">
+                        <a class="left carousel-control" href="#carouselClubExt" data-slide="prev">
                             <i class="fa fa-arrow-left"></i>
                             <span class="sr-only">Précédent</span>
                         </a>
-                        <a class="right carousel-control" href="#carouselChoixTeamExt" data-slide="next">
+                        <a class="right carousel-control" href="#carouselClubExt" data-slide="next">
                             <i class="fa fa-arrow-right"></i>
                             <span class="sr-only">Suivant</span>
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
             </div>
         </div>
     </div>
@@ -133,6 +137,6 @@
         var url = '{{route('getClub')}}';
     </script>
     <!-- Scripts -->
-
+    {!! Html::script('js/simulation.js') !!}
 
 @endsection
