@@ -68,7 +68,7 @@ html,body{
 
 #nav{
     -webkit-transform: translateZ(0);/*chrome issue*/
-    position: fixed;
+    position: absolute;
     display: block;
     top:0;
     left:0;
@@ -314,3 +314,4 @@ html,body{
     filter: var(--shadow-bg-icons);
     margin-bottom: 25px;
 }
+>>>>>>> master
