@@ -18,7 +18,7 @@
 
         <div id="svg_background">
             <object>
-                <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}" border="5"></embed>
+                <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}" border="5"></embed>
             </object>
         </div>
 
@@ -26,7 +26,7 @@
         <div id="login_cards_container" class="active">
             <div class="connect_cards_background">
                 <object>
-                    <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}"></embed>
+                    <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}"></embed>
                 </object>
             </div>
             <div class="connect_cards_darkbackground"></div>
@@ -72,7 +72,7 @@
         <div id="register_cards_container" class="">
             <div class="connect_cards_background">
                 <object>
-                    <embed src="{{ asset('2Weeks_Images/Auth/bckgrd_cours.svg') }}"></embed>
+                    <embed src="{{ asset('STATS&CO/Auth/bckgrd_cours.svg') }}"></embed>
                 </object>
             </div>
             <div class="connect_cards_darkbackground"></div>
@@ -86,12 +86,20 @@
                 <form class="connect_cards_form" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
-                    <div class="connect_cards_form_containers{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label  for="register_cards_input_name"></label>
-                        <input type="text" name="name" id="register_cards_input_name" placeholder="Cristiano" value="{{ old('name') }}" required autofocus>
-                        @if ($errors->has('name'))
+                    <div class="connect_cards_form_containers connect_cards_form_containers_name{{ $errors->has('first_name') ? ' has-error' : '' }} {{ $errors->has('last_name') ? ' has-error' : '' }}">
+                        <label  for="register_cards_input_first_name"></label>
+                        <input type="text" name="first_name" id="register_cards_input_first_name" placeholder="Cristiano" value="{{ old('first_name') }}" required autofocus>
+                        @if ($errors->has('first_name'))
                             <span class="error-block">
-                                <strong>{{ $errors->first('name') }}</strong>
+                                <strong>{{ $errors->first('first_name') }}</strong>
+                            </span>
+                        @endif
+
+                        <label  for="register_cards_input_last_name"></label>
+                        <input type="text" name="last_name" id="register_cards_input_last_name" placeholder="Ronaldo" value="{{ old('last_name') }}" required autofocus>
+                        @if ($errors->has('last_name'))
+                            <span class="error-block">
+                                <strong>{{ $errors->first('last_name') }}</strong>
                             </span>
                         @endif
                     </div>

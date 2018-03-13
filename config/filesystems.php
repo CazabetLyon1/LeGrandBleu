@@ -62,7 +62,10 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        'public_upload_clubs' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/STATS&CO/Clubs',
+        ],
     ],
 
 ];

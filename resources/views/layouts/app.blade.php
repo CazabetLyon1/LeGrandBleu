@@ -26,12 +26,15 @@
 
     <nav id="nav">
         <div id="nav-account">
-            <div id="nav-account-icon"></div>
+            @guest
+            @else
+                <div id="nav-account-icon" style="background: #070025  url('{{ asset(Auth::user()->load('accounts_image')->accounts_image->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
+            @endguest
             <div id="nav-account-name">
                 @guest
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">Connexion <br/> Inscription</a>
                 @else
-                    <a href="">{{ Auth::user()->name }}</a>
+                    <a href="{{ route('user-page',['usr_login' => Auth::user()->login]) }}">{{ Auth::user()->first_name }} <br/> {{Auth::user()->last_name}}</a>
                 @endguest
             </div>
         </div>
