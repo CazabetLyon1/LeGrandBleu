@@ -106,8 +106,14 @@ class Poisson
             $tabProbButExterieur[] = (((exp(-$infos['Exterieur']['U2']))*(pow($infos['Exterieur']['U2'],$i)))/(self::getFactorial($i)))*100;
         }
         $result = [
-            "Domicile"=>$tabProbButDomicile,
-            "Extieur"=>$tabProbButExterieur
+            "Domicile" => [
+                "infos"=>$infos['Domicile'],
+                "buts"=>$tabProbButDomicile
+            ],
+            "Extieur"=> [
+                "infos"=>$infos['Exterieur'],
+                "buts"=>$tabProbButExterieur
+            ]
         ];
 
         return (isset($result) ? $result : '');
