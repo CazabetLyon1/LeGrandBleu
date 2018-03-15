@@ -49,8 +49,8 @@ $('document').ready(function() {
                     //console.log(value);
 
                     $($carousel2 + ' .carousel-inner').append(
-                        '<div class="item" id="' + value.url_club + '">' +
-                        '<img class="logo-club" src="2Weeks_Images/Clubs/Ligue1/Olympique_lyonnais.png">' +
+                        '<div class="item" id="' + value.url_nom + '">' +
+                        '<img class="logo-club" src="' + value.url_club + '">' +
                         //'<img class="logo-club" src="2Weeks_Images/Clubs' + value.pays + '/' + value.url_club + '.png">' +
                         '<p>' + value.nom_club + '</p>' +
                         '</div>'
@@ -58,8 +58,8 @@ $('document').ready(function() {
 
                     if (index == 1) {
                         $($carousel2 + ' .carousel-inner').append(
-                            '<div class="item active" id="' + value.url_club + '">' +
-                            '<img class="logo-club" src="2Weeks_Images/Clubs/Ligue1/Olympique_lyonnais.png">' +
+                            '<div class="item active" id="' + value.url_nom + '">' +
+                            '<img class="logo-club" src="' + value.url_club + '">' +
                             '<p>' + value.nom_club + '</p>' +
                             '</div>'
                         );
