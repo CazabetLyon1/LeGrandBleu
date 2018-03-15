@@ -110,7 +110,7 @@ class Poisson
                 "infos"=>$infos['Domicile'],
                 "buts"=>$tabProbButDomicile
             ],
-            "Extieur"=> [
+            "Exterieur"=> [
                 "infos"=>$infos['Exterieur'],
                 "buts"=>$tabProbButExterieur
             ]

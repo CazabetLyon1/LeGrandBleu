@@ -42,7 +42,6 @@ class UserController extends Controller
             if($user->accounts_image_id === null){
                 $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
             }
-            dd(Poisson::get_poisson(18, 3));
             return view('User.user', compact('user'));
         }
     }
