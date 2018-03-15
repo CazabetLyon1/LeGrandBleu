@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Poisson;
 
 class UserController extends Controller
 {
@@ -42,7 +41,6 @@ class UserController extends Controller
             if($user->accounts_image_id === null){
                 $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
             }
-            dd(Poisson::get_force(18, 3));
             return view('User.user', compact('user'));
         }
     }

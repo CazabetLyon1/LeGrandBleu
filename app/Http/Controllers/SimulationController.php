@@ -189,7 +189,7 @@ class SimulationController extends Controller
 
         for($i = 0; $i <= 5; $i++) {
             $tabProbButDomicile[] = (((exp(-$U))*(pow($U,$i)))/($this->getFactorial($i)))*100;
-            $tabProbButExterieur[] = (((exp(-$U))*(pow($U2,$i)))/($this->getFactorial($i)))*100;
+            $tabProbButExterieur[] = (((exp(-$U2))*(pow($U2,$i)))/($this->getFactorial($i)))*100;
         }
 
         /***** CHART 1 *****/
