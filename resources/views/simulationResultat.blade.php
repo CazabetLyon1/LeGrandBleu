@@ -81,6 +81,9 @@
                     <div class="col-md-12 chartLoiDePoisson">
                         {!! $chart1->container() !!}
                     </div>
+                    <div class="col-md-12 00ffff">
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
                 </div>
 
             </div>
@@ -108,6 +111,13 @@
     </div>
 
     <!-- End Of Main Application -->
+@endsection
+
+@section('scripts')
+
     <script src=//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js charset=utf-8></script>
+
     {!! $chart1->script() !!}
+    {!! Html::script('js/simulationResultat.js') !!}
+
 @endsection

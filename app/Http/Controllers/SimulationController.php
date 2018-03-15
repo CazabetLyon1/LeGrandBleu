@@ -187,10 +187,19 @@ class SimulationController extends Controller
         $tabProbButDomicile = array();
         $tabProbButExterieur = array();
 
-        for($i = 0; $i <= 5; $i++) {
+        for($i = 0; $i < 5; $i++) {
             $tabProbButDomicile[] = (((exp(-$U))*(pow($U,$i)))/($this->getFactorial($i)))*100;
-            $tabProbButExterieur[] = (((exp(-$U))*(pow($U2,$i)))/($this->getFactorial($i)))*100;
+            $tabProbButExterieur[] = (((exp(-$U2))*(pow($U2,$i)))/($this->getFactorial($i)))*100;
         }
+
+        $tabProbResultFinal = array();
+        for($i = 0; $i < 5; $i++) {
+            for ($j = 0; $j < 5; $j++) {
+                $tabProbResultFinal[$i.'-'.$j] = $tabProbButDomicile[$i]/100 * $tabProbButExterieur[$j]/100 * 100;
+            }
+        }
+
+        print_r($tabProbResultFinal);
 
         /***** CHART 1 *****/
         $chart1 = new SampleChart;
@@ -219,64 +228,11 @@ class SimulationController extends Controller
         ]);
     }
 
-    public function chart2($clubDomicile, $clubExterieur)
-    {
-        $nbMatch = DB::select('SELECT count(id_match) as nb_match FROM rencontres
-        WHERE (equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.')
-        OR
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
-        GROUP BY id_match');
-        $nbMatch = count($nbMatch);
-
-        $nbMatchDomicileWin = DB::select('SELECT count(id_match) as nb_match FROM rencontres
-        WHERE ((equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.')
-        OR
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.'))
-        AND resultat = \'H\'
-        GROUP BY id_match');
-        $nbMatchDomicileWin = count($nbMatchDomicileWin);
-
-        $nbMatchExterieurWin = DB::select('SELECT count(id_match) as nb_match FROM rencontres
-        WHERE ((equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.')
-        OR
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.'))
-        AND resultat = \'A\'
-        GROUP BY id_match');
-        $nbMatchExterieurWin = count($nbMatchExterieurWin);
-
-        $nbMatchNul = DB::select('SELECT count(id_match) as nb_match FROM rencontres
-        WHERE ((equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.')
-        OR
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.'))
-        AND resultat = \'D\'
-        GROUP BY id_match');
-        $nbMatchNul = count($nbMatchNul);
-
-
-        $nbMatchDomicileWin = number_format(($nbMatchDomicileWin * 100) / $nbMatch,2);
-        $nbMatchExterieurWin = number_format(($nbMatchExterieurWin * 100) / $nbMatch,2);
-        $nbMatchNul = number_format(($nbMatchNul * 100) / $nbMatch, 2);
-
-        $chart2 = Charts::create('donut', 'chartjs')
-            ->title('')
-            ->labels([$clubDomicile->nom_club, 'Nul', $clubExterieur->nom_club])
-            ->colors(['#00ffff', '#a94244', '#18a555'])
-            ->values([$nbMatchDomicileWin,$nbMatchExterieurWin,$nbMatchNul])
-            ->dimensions(0,200);
-
-        return $chart2;
-    }
-
     public function getFactorial($num)
     {
         $res = 1;
         for ($n = $num; $n >= 1; $n--)
             $res = $res*$n;
         return $res;
-    }
-
-    public function getUrl($string)
-    {
-
     }
 }
