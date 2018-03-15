@@ -94,6 +94,7 @@ body{
 	position: relative;
 	overflow: auto;
 	padding: 10px;
+	overflow-x: hidden;
 }
 .popUpSearch .popUpSearch-input-content + .popUpSearch-itemsContainer:before {
 	content: '';
@@ -105,6 +106,7 @@ body{
     left: 0;
     display: block;
     background: linear-gradient(rgba(12, 36, 97,1.0) 10%, transparent 100%);
+	pointer-events: none;
 }
 .popUpSearch .popUpSearch-input-content + .popUpSearch-itemsContainer:after {
 	content: '';
@@ -116,6 +118,7 @@ body{
     left: 0;
     display: block;
     background: linear-gradient(transparent 10%, rgba(12, 36, 97,1.0) 100%);
+	pointer-events: none;
 }
 .popUpSearch  .popUpSearch-itemsContainer .popUpSearch-item{
 	display: block;
@@ -145,11 +148,16 @@ body{
 	-ms-border-radius: 3px;
 	-o-border-radius: 3px;
 
-	transform: rotateY(-100deg) rotateZ(-90deg);
-	-webkit-transform: rotateY(-100deg) rotateZ(-90deg);
-	-moz-transform: rotateY(-100deg) rotateZ(-90deg);
-	-ms-transform: rotateY(-100deg) rotateZ(-90deg);
-	-o-transform: rotateY(-100deg) rotateZ(-90deg);
+	-webkit-transform-origin: left top;
+	-moz-transform-origin: left top;
+	-ms-transform-origin: left top;
+	-o-transform-origin: left top;
+	transform-origin: left top;
+	transform: rotateX(-90deg) rotateZ(-90deg);
+	-webkit-transform: rotateY(-90deg) rotateZ(-90deg);
+	-moz-transform: rotateY(-90deg) rotateZ(-90deg);
+	-ms-transform: rotateY(-90deg) rotateZ(-90deg);
+	-o-transform: rotateY(-90deg) rotateZ(-90deg);
 
 	opacity: 0;
 	transition: 0.3s ease-in-out;

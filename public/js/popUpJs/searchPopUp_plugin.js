@@ -308,15 +308,19 @@
                             data: {nom_club: valeur, _token: token},
                             success: function (msg) {
                                 drawIcon(msg.data);
+                                positionButtonPopUp();
+
                             }
                         });
 
                     }else{
                         removeContent();
-                    }
-                    if(settings.popUpPositionButton != "bottom" && settings.needActivate){
                         positionButtonPopUp();
+
                     }
+                    /*if(settings.popUpPositionButton != "bottom" && settings.needActivate){
+                        positionButtonPopUp();
+                    }*/
                 }
 			}
 		});

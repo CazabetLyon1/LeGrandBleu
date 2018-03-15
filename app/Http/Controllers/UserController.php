@@ -63,10 +63,18 @@ class UserController extends Controller
 
     public function findTeam(Request $request)
     {
-        $team = DB::table('clubs')
-            ->where('nom_club', 'like', $request['nom_club'].'%')
-            ->select('clubs.id_club as id','clubs.nom_club as nom','clubs.url_club as img')
-            ->get();
+        $teamPays = DB::table('clubs')->where('pays','=',$request['nom_club'])->count();
+        if($teamPays != 0){
+            $team = DB::table('clubs')
+                ->where('pays', 'like', $request['nom_club'])
+                ->select('clubs.id_club as id','clubs.nom_club as nom','clubs.url_club as img')
+                ->get();
+        }else{
+            $team = DB::table('clubs')
+                ->where('nom_club', 'like', $request['nom_club'].'%')
+                ->select('clubs.id_club as id','clubs.nom_club as nom','clubs.url_club as img')
+                ->get();
+        }
         return response()->json(['data' => $team]);
     }
     public function changeTeam(Request $request){
