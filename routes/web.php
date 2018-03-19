@@ -23,6 +23,14 @@ Route::get('profile', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/simulation', 'SimulationController@index');
+
+Route::post('/getClub', 'SimulationController@getClubByPays')->name('getClub');
+
+Route::get('/simulation/{url_club_domicile}/{url_club_exterieur}',
+    'SimulationController@simulationResultat');
+
 Route::get('{usr_login}',[
     'uses' => 'UserController@index',
     'as' => 'user-page'

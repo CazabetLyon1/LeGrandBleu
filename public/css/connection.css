@@ -316,5 +316,6 @@ button[type='submit']{
 
 #connection-section{
     background-color: var(--bleu-fond);
+    padding-top: 0;
 }
 /*https://www.flaticon.com/packs/interface-46*/

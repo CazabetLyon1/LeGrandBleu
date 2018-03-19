@@ -1,0 +1,69 @@
+.container-perso {
+    margin-top : 90px;
+}
+
+.nom-club-result {
+    color: white;
+    text-shadow: var(--shadow-neon);
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size : 15px;
+}
+
+h2 {
+    color: white;
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size: 15px;
+}
+
+* {
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    color: white;
+    margin: 5px;
+}
+
+.nameAl {
+    color: white;
+    text-shadow: var(--shadow-neon);
+}
+
+.infoTeam {
+    margin-top: 50px;
+}
+
+.logo-club-title {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+}
+
+.logo-club-32 {
+    width: 32px;
+    height: 32px;
+}
+
+.dateMatch {
+    margin-bottom: 10px;
+}
+
+.chartLoiDePoisson {
+    margin-top: 10px;
+}
+
+.noUpper {
+    text-transform: none;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.statTeam {
+    margin-top: 50px;
+}
+
+

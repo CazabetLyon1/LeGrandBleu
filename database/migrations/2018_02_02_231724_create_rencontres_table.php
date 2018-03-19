@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRencontreTable extends Migration
+class CreateRencontresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRencontreTable extends Migration
      */
     public function up()
     {
-        Schema::create('rencontre', function (Blueprint $table) {
+        Schema::create('rencontres', function (Blueprint $table) {
             $table->increments('id_match');
             $table->string('division');
             $table->integer('annee');
@@ -55,6 +55,6 @@ class CreateRencontreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rencontre');
+        Schema::dropIfExists('rencontres');
     }
 }

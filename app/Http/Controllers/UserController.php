@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Poisson;
 
 class UserController extends Controller
 {
@@ -29,8 +30,8 @@ class UserController extends Controller
         /*$user = User::where('login','like',$usr_login)->first();*/
         $user = DB::table('users')
             ->leftJoin('accounts_images','accounts_images.id','=','users.accounts_image_id')
-            ->leftJoin('club','club.id_club','=','users.club_id')
-            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url', 'club.id_club', 'club.nom_club', 'club.url_club', 'club.nom_ville', 'club.nom_ville', 'club.pays')
+            ->leftJoin('clubs','clubs.id_club','=','users.club_id')
+            ->select('users.id','users.accounts_image_id','users.login','users.first_name','users.last_name','users.email','users.birthday','accounts_images.avatar_url', 'clubs.id_club', 'clubs.nom_club', 'clubs.url_club', 'clubs.nom_ville', 'clubs.nom_ville', 'clubs.pays')
             ->where('login','like',$usr_login)->first();
         if($user === null) {
             return abort(404, 'Bad User Login');
@@ -62,17 +63,17 @@ class UserController extends Controller
 
     public function findTeam(Request $request)
     {
-        $team = DB::table('club')
+        $team = DB::table('clubs')
             ->where('nom_club', 'like', $request['nom_club'].'%')
-            ->select('club.id_club as id','club.nom_club as nom','club.url_club as img')
+            ->select('clubs.id_club as id','clubs.nom_club as nom','clubs.url_club as img')
             ->get();
         return response()->json(['data' => $team]);
     }
     public function changeTeam(Request $request){
-        $club = DB::table('club')
-            ->where('club.id_club','=', $request['club_id'])->first();
+        $club = DB::table('clubs')
+            ->where('clubs.id_club','=', $request['club_id'])->first();
         if($club === null){
-            return response()->json(['data' => 'error club doen\'t exist']);
+            return response()->json(['data' => 'error clubs doen\'t exist']);
         }else{
             $user = User::find(Auth::id());
             $user->club_id = $request['club_id'];
