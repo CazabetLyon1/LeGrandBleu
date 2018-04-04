@@ -62,7 +62,7 @@
                             <div class="content-plcmt" id="favorite-team-content">
                                 <div class="logo-favorite-team-popUp logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->url_club) }}') no-repeat 50% 50% / contain;"></div>
                                 <p class="name-favorite-team md-OrkneyBold">{{ $user->nom_club }}</p>
-                                <p class="att-def-favorite-team md-OrkneyLight">Att : <span class="md-OrkneyBold">90</span> Def : <span class="md-OrkneyBold"> 85</span></p>
+                                <p class="att-def-favorite-team md-OrkneyLight">Att : <span class="md-OrkneyBold">{{ $user->attEquipe }}</span> Def : <span class="md-OrkneyBold">{{ $user->defEquipe }}</span></p>
                                 <p class="country-favorite-team sm-OrkneyLight">{{ $user->pays }} - {{ $user->nom_ville }}</p>
                             </div>
 

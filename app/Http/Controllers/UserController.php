@@ -28,6 +28,8 @@ class UserController extends Controller
     public function index($usr_login)
     {
         /*$user = User::where('login','like',$usr_login)->first();*/
+        $attEquipe = null;
+        $defEquipe = null;
         $user = DB::table('users')
             ->leftJoin('accounts_images','accounts_images.id','=','users.accounts_image_id')
             ->leftJoin('clubs','clubs.id_club','=','users.club_id')
@@ -38,6 +40,12 @@ class UserController extends Controller
         }else{
             if($user->id_club === null){
                 $user->url_club = "STATS&CO/default_imgs/club-img-default.png";
+            }else{
+                $equipe = Poisson::get_force_equipe($user->id_club);
+                $attEquipe =  $equipe['attaque'] ;
+                $defEquipe =  $equipe['defense'];
+                $user->attEquipe = $attEquipe;
+                $user->defEquipe = $defEquipe;
             }
             if($user->accounts_image_id === null){
                 $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
@@ -86,7 +94,11 @@ class UserController extends Controller
             $user = User::find(Auth::id());
             $user->club_id = $request['club_id'];
             $user->update();
-
+            $equipe = Poisson::get_force_equipe($user->club_id);
+            $attEquipe =  $equipe['attaque'] ;
+            $defEquipe =  $equipe['defense'];
+            $club->attEquipe = $attEquipe;
+            $club->defEquipe = $defEquipe;
             return response()->json(['data' => $club]);
         }
     }

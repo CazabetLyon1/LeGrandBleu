@@ -33,6 +33,9 @@ $('document').ready(function(){
                 $('#favorite-team-content .logo-favorite-team').css('background-image', 'url("'+msg.data.url_club+'")');
                 $('#favorite-team-content .name-favorite-team').text(msg.data.nom_club);
                 $('#favorite-team-content .country-favorite-team').text(msg.data.pays+' - '+msg.data.nom_ville);
+                $('#favorite-team-content .att-def-favorite-team span:nth-child(1)').text(msg.data.attEquipe);
+                $('#favorite-team-content .att-def-favorite-team span:nth-child(2)').text(msg.data.defEquipe);
+
             }
         });
     });
