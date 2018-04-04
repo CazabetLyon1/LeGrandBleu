@@ -66,6 +66,9 @@
             $(window).click(function () {
                 closeSearchPopUp();
             });
+            $(window).resize(function () {
+                positionButtonPopUp();
+            });
             $(window).scroll(function(event) {
                 if(lastScrolledLeft != $(document).scrollLeft()){
                     xMousePos -= lastScrolledLeft;

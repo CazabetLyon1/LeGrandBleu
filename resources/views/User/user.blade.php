@@ -25,33 +25,37 @@
 @section('container')
     <div class="section sct-pd container-fluid">
             <div class="row block">
-                <div class="col-md-12">
+                <div class="col-xl-6 col-sm-6 col-xs-12">
 
-                    <div id="account-status">
-                        <div class="account-info">
-                            <div class="header popUpSearch_activator @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset($user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
-                            <div class="body">
-                                <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
-                                <p class="user_email">{!! $user->email !!}</p>
-                            </div>
+                    <div class="block-section block">
+                        <div class="block-title">
+                            <div class="block-title-icon user-icon"></div>
+                            <p class="block-title-text">Infos Utilisateur</p>
                         </div>
-                        <div class="account-nav">
-                            <div class="item item-info active">
-                                <div></div>
-                                <p class="sm-OrkneyBold">infos</p>
-                            </div>
-                            <div class="item item-stats">
-                                <div></div>
-                                <p class="sm-OrkneyBold">stats</p>
+                        <div id="account-status" class="block-content">
+                            <div class="account-info">
+                                <div class="header popUpSearch_activator @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset($user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
+                                <div class="body">
+                                    <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
+                                    <p class="user_Birthday sm-OrkneyLight">Anniversaire : {!! $user->birthday!!}</p>
+                                    <p class="user_email">{!! $user->email !!}</p>
+                                </div>
+                                {{--<div class="account-nav">
+                                    <div class="item item-info active">
+                                        <div></div>
+                                        <p class="sm-OrkneyBold">infos</p>
+                                    </div>
+                                    <div class="item item-stats">
+                                        <div></div>
+                                        <p class="sm-OrkneyBold">stats</p>
+                                    </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>
 
                 </div>
-
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-xs-12 neon-right">
+                <div class="col-xl-6 col-sm-6 col-xs-12">
 
                     <div class="block-section block">
                         <div class="block-title">
@@ -59,7 +63,7 @@
                             <p class="block-title-text">Equipe favorite</p>
                         </div>
                         <div class="block-content">
-                            <div class="content-plcmt" id="favorite-team-content">
+                            <div class="" id="favorite-team-content">
                                 <div class="logo-favorite-team-popUp logo-favorite-team bg-icon @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" style="background: transparent url('{{ asset($user->url_club) }}') no-repeat 50% 50% / contain;"></div>
                                 <p class="name-favorite-team md-OrkneyBold">{{ $user->nom_club }}</p>
                                 <p class="att-def-favorite-team md-OrkneyLight">Att : <span class="md-OrkneyBold">{{ $user->attEquipe }}</span> Def : <span class="md-OrkneyBold">{{ $user->defEquipe }}</span></p>

@@ -13,7 +13,7 @@ $('document').ready(function(){
         dataUrl:url2,
         mainContainer: '#favorite-team-content',
         needActivate: true,
-        popUpPositionButton: "right",
+        popUpPositionButton: "bottom",
         popUpPositionAlign: "center",
         activateAttr: ".logo-favorite-team-popUp",
         searchActive: true,
