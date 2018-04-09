@@ -47,7 +47,7 @@
                 </form>
             @endguest
             <a href="{{ url('/simulation') }}">Simulation</a>
-            <a href="#">Equipes</a>
+            <a href="{{ url('/selectTeam') }}">Equipes</a>
             <a href="#">Championnats</a>
             <a href="#">Home</a>
             <a id="nav-Logo" href="{{ url('/') }}">STATS&CO<span>&#169;</span></a>
