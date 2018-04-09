@@ -22,17 +22,12 @@
                 <h1 class="visible-md">Simulation de rencontre sportive</h1>
                 <p class="noUpper">Selectionnez l'equipe dont vous désirez consulter les informations</p>
             </div>
-            <div class="col-md-12 text-center" id="boutonValiderSimulation">
-                <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
-            </div>
         </div>
         <div class="row block">
-
-
             <hr class="visible-xs small">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12 text-center"><h4><i class="fa fa-bus"></i> equipe exterieure</h4></div>
+            <div class="col-md-offset-3 col-md-6">
+                <div class="row text-center">
+                    <div class="col-md-12 text-center"><h4></i>Equipe sélectionnée</h4></div>
                 </div>
                 <div class="row text-center">
                     <div id="carouselPaysExt" class="carousel" data-ride="carousel" data-interval="0">
@@ -79,6 +74,10 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="col-md-12 text-center" id="boutonValiderSimulation">
+            <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
         </div>
     </div>
 @endsection
@@ -90,6 +89,6 @@
         var url = '{{route('getClub')}}';
     </script>
     <!-- Scripts -->
-    {!! Html::script('js/simulation.js') !!}
+    {!! Html::script('js/selectTeam.js') !!}
 
 @endsection

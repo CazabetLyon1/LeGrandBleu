@@ -28,7 +28,11 @@ Route::get('/simulation', 'SimulationController@index');
 
 Route::get('/selectTeam' , 'SelectTeamController@index');
 
+Route::get('/statEquipe/{url_club_choisis}',
+    'SelectTeamController@simulationResultat');
+
 Route::post('/getClub', 'SimulationController@getClubByPays')->name('getClub');
+
 
 Route::get('/simulation/{url_club_domicile}/{url_club_exterieur}',
     'SimulationController@simulationResultat');

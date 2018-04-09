@@ -19,7 +19,7 @@ class SelectTeamController extends Controller
     public function index()
     {
         $pays = DB::select('SELECT DISTINCT pays FROM clubs');
-        return view('simulation', ['pays' => $pays]);
+        return view('selectTeam', ['pays' => $pays]);
     }
 
     /**
@@ -100,62 +100,46 @@ class SelectTeamController extends Controller
         return response()->json(['clubs' => $clubs]);
     }
 
-    public function simulationResultat($url_club_domicile, $url_club_exterieur)
+    public function simulationResultat($url_club_choisis)
     {
         /***** INFO CLUB DOMICILE & EXTERIEUR *****/
-        $clubDomicile = DB::table('clubs')
+        $clubChoisis = DB::table('clubs')
             ->where([
-                ['url_nom','=',$url_club_domicile],
+                ['url_nom','=',$url_club_choisis],
             ])
             ->first();
 
-        $clubExterieur = DB::table('clubs')
-            ->where([
-                ['url_nom','=',$url_club_exterieur],
-            ])
-            ->first();
+        $clubAdverse = DB::select('SELECT clubs.* 
+        FROM clubs 
+        WHERE clubs.id_club in (
+        SELECT equipe_exterieur 
+        FROM rencontres 
+        WHERE equipe_domicile =  '.$clubChoisis -> id_club  .' )
+        OR clubs.id_club in (
+        SELECT equipe_domicile
+        FROM rencontres
+        WHERE equipe_exterieur  = '.$clubChoisis ->id_club.'
+        )');
+
+
 
         /***** ANCIENNES RENCONTRES *****/
         $rencontres = DB::select('SELECT * FROM rencontres 
-        WHERE (equipe_domicile = '.$clubDomicile->id_club.' AND equipe_exterieur = '.$clubExterieur->id_club.') 
+        WHERE (equipe_domicile = '.$clubChoisis->id_club.' ) 
         OR 
-        (equipe_domicile = '.$clubExterieur->id_club.' AND equipe_exterieur = '.$clubDomicile->id_club.')
+        (equipe_exterieur = '.$clubChoisis->id_club.')
         ORDER BY id_match DESC');
 
-        /***** LOI DE POISSON *****/
-        $loiPoisson = Poisson::get_poisson($clubDomicile->id_club, $clubExterieur->id_club);
 
-        $tabProbFinal = array();
-        for ($i = 0;$i <= 5; $i++) {
-            for($j = 0; $j <= 5; $j++) {
-                $tabProbFinal[] = ($loiPoisson['Domicile']['buts'][$i]) * ($loiPoisson['Exterieur']['buts'][$j]) / 100;
-            }
-        }
 
-        /***** CHART 1 *****/
-        $chart1 = new SampleChart;
-        $chart1->labels(['0 but','1 but','2 buts','3 buts','4 buts','5 buts'])
-            ->height(200)
-            ->options([
-                'legend' => [
-                    'position' => 'bottom'
-                ]
-            ]);
-        $chart1->dataset($clubDomicile->nom_club, 'bar', $loiPoisson['Domicile']['buts'])
-            ->options(['borderColor' => '#00ffff'])
-            ->options(['backgroundColor' => '#00ffff']);
-        $chart1->dataset($clubExterieur->nom_club, 'bar', $loiPoisson['Exterieur']['buts'])
-            ->options(['borderColor' => '#a94244'])
-            ->options(['backgroundColor' => '#a94244']);
+
 
         /***** RETURN FUNCTION *****/
-        return view('simulationResultat', [
-            'clubDomicile' => $clubDomicile,
-            'clubExterieur' => $clubExterieur,
+        return view('statEquipe', [
+            'clubChoisis' => $clubChoisis,
             'rencontres' => $rencontres,
-            'loiPoisson' => $loiPoisson,
-            'tabProbFinal' => $tabProbFinal,
-            'chart1' => $chart1
+            'clubAdverse' => $clubAdverse
+
         ]);
     }
 
