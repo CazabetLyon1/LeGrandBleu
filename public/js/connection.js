@@ -94,21 +94,21 @@ $('document').ready(function(){
         });
 	}
 	function loginRegisterSwitch(){
-		$('#login_cards_container .connect_cards_header').click(function(){
-			$this = $(this);
-			if(!$this.parent().hasClass('active')){
-				$this.parent().addClass('active');
-				$('#register_cards_container').removeClass('active');
-			}
+        $('#onglet-auth-connection').click(function(){
+            $(this).addClass('active');
+            $('#onglet-auth-inscription').removeClass('active');
+
+            $('#login_cards_container').addClass('active');
+            $('#register_cards_container').removeClass('active');
 		});
 
-		$('#register_cards_container .connect_cards_header').click(function(){
-			$this = $(this);
-			if(!$this.parent().hasClass('active')){
-				$this.parent().addClass('active');
-				$('#login_cards_container').removeClass('active');
-			}
-		});
+        $('#onglet-auth-inscription').click(function(){
+            $(this).addClass('active');
+            $('#onglet-auth-connection').removeClass('active');
+
+            $('#register_cards_container').addClass('active');
+            $('#login_cards_container').removeClass('active');
+        });
 	}
 
 

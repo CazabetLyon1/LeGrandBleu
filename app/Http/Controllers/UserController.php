@@ -40,16 +40,24 @@ class UserController extends Controller
         }else{
             if($user->id_club === null){
                 $user->url_club = "STATS&CO/default_imgs/club-img-default.png";
+                $attEquipe =  "" ;
+                $defEquipe =  "";
+                $user->attEquipe = $attEquipe;
+                $user->defEquipe = $defEquipe;
             }else{
+
                 $equipe = Poisson::get_force_equipe($user->id_club);
                 $attEquipe =  $equipe['attaque'] ;
                 $defEquipe =  $equipe['defense'];
                 $user->attEquipe = $attEquipe;
                 $user->defEquipe = $defEquipe;
             }
+
             if($user->accounts_image_id === null){
                 $user->avatar_url = "STATS&CO/default_imgs/img-usr-default.png";
             }
+
+
             return view('User.user', compact('user'));
         }
     }
