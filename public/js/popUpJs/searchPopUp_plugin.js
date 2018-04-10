@@ -44,6 +44,10 @@
 
 			var activationToggle = false;
 			var actPos = $(settings.activateAttr).position();
+            var xMousePos = 0;
+            var yMousePos = 0;
+            var lastScrolledLeft = 0;
+            var lastScrolledTop = 0;
             var typingTimer;                //timer identifier
             var doneTypingInterval = 50000;  //time in ms, 5 second for example
             var entityMap = {
@@ -61,6 +65,22 @@
 
             $(window).click(function () {
                 closeSearchPopUp();
+            });
+            $(window).resize(function () {
+                positionButtonPopUp();
+            });
+            $(window).scroll(function(event) {
+                if(lastScrolledLeft != $(document).scrollLeft()){
+                    xMousePos -= lastScrolledLeft;
+                    lastScrolledLeft = $(document).scrollLeft();
+                    xMousePos += lastScrolledLeft;
+                }
+                if(lastScrolledTop != $(document).scrollTop()){
+                    yMousePos -= lastScrolledTop;
+                    lastScrolledTop = $(document).scrollTop();
+                    yMousePos += lastScrolledTop;
+                }
+                window.status = "x = " + xMousePos + " y = " + yMousePos;
             });
 
 			function initAll(){
@@ -246,8 +266,8 @@
 					$this = $(this);
 					$('.popUpSearch-nameBubble span').text($this.find('.popUpSearch-item-icon').attr("data-nom-team"));
 					$('.popUpSearch-nameBubble').addClass('show');
-					var posX  = event.pageX - $('.popUpSearch-nameBubble').width()/2;
-					$('.popUpSearch-nameBubble').css('top', event.pageY-60);
+					var posX  = (event.pageX-xMousePos) - $('.popUpSearch-nameBubble').width()/2;
+					$('.popUpSearch-nameBubble').css('top', (event.pageY-yMousePos)-60);
 					$('.popUpSearch-nameBubble').css('left', posX);
 				});
 
@@ -291,15 +311,19 @@
                             data: {nom_club: valeur, _token: token},
                             success: function (msg) {
                                 drawIcon(msg.data);
+                                positionButtonPopUp();
+
                             }
                         });
 
                     }else{
                         removeContent();
-                    }
-                    if(settings.popUpPositionButton != "bottom" && settings.needActivate){
                         positionButtonPopUp();
+
                     }
+                    /*if(settings.popUpPositionButton != "bottom" && settings.needActivate){
+                        positionButtonPopUp();
+                    }*/
                 }
 			}
 		});

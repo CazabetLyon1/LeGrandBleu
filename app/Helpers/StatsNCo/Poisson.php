@@ -11,6 +11,56 @@ class Poisson
      *
      * @return string
      */
+    public static function get_force_equipe($id_club){
+        $equipe = DB::table('clubs')->where('id_club', $id_club)->first();
+        $nbButClub = DB::table('rencontres')->where([
+            ['equipe_domicile', '=', $id_club],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbButClubPrisExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur', '=', $id_club],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbMatchClub = DB::table('rencontres')->where([
+            ['equipe_domicile', '=', $id_club]
+        ])->count();
+
+        $nbMatchClubAExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur', '=', $id_club],
+            ['annee', '=', '2016']
+        ])->count();
+        $nbButDomicile = DB::table('rencontres')->where([
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+        $nbMatchDomicile = DB::table('rencontres')->where([
+            ['annee', '=', '2016']
+        ])->count();
+
+        $calcDomicileEquipe = $nbButClub / $nbMatchClub;
+        $calcDomicileTotal = $nbButDomicile / $nbMatchDomicile;
+
+        $nbButClubExterieur = DB::table('rencontres')->where([
+            ['equipe_domicile', '!=', $id_club],
+            ['annee', '=', '2016']
+        ])->sum('but_domicile');
+
+        $nbMatchClubExtDomicile = DB::table('rencontres')->where([
+            ['equipe_domicile', '!=', $id_club],
+            ['annee', '=', '2016']
+        ])->count();
+
+        $calcExterieurEquipe = $nbButClubExterieur / $nbMatchClubExtDomicile;
+        $forceAttDomicile = number_format($calcDomicileEquipe / $calcDomicileTotal, 2);
+        $potentielDefDomicile = number_format($calcExterieurEquipe / $calcDomicileTotal, 2);
+        $result = [
+            "Id Equipe Domicile" => $equipe->id_club,
+            "Equipe Domicile" => $equipe->nom_club,
+            "attaque" => $forceAttDomicile,
+            "defense" => $potentielDefDomicile
+        ];
+        return (isset($result) ? $result : '');
+    }
+
     public static function get_force($id_club_domicile, $id_club_exterieur)
     {
         $equipeDom = DB::table('clubs')->where('id_club', $id_club_domicile)->first();
