@@ -100,7 +100,7 @@ class SelectTeamController extends Controller
         return response()->json(['clubs' => $clubs]);
     }
 
-    public function simulationResultat($url_club_choisis)
+    public function simulationResultat($url_club_choisis , $anneechoisis)
     {
         /***** INFO CLUB DOMICILE & EXTERIEUR *****/
         $clubChoisis = DB::table('clubs')
@@ -108,6 +108,11 @@ class SelectTeamController extends Controller
                 ['url_nom','=',$url_club_choisis],
             ])
             ->first();
+
+        $choixAnnee = DB::table('rencontres->annee')
+            ->where([
+            ])
+            ->get();
 
         $clubAdverse = DB::select('SELECT clubs.* 
         FROM clubs 
@@ -123,12 +128,98 @@ class SelectTeamController extends Controller
 
 
 
+
         /***** ANCIENNES RENCONTRES *****/
         $rencontres = DB::select('SELECT * FROM rencontres 
-        WHERE (equipe_domicile = '.$clubChoisis->id_club.' ) 
+        WHERE (equipe_domicile = '.$clubChoisis->id_club.' AND annee='.$anneechoisis.'
+         ) 
         OR 
-        (equipe_exterieur = '.$clubChoisis->id_club.')
-        ORDER BY id_match DESC');
+        (equipe_exterieur = '.$clubChoisis->id_club.' AND annee='.$anneechoisis.')
+        ORDER BY id_match DESC
+        LIMIT 5');
+
+
+        $nbPrisDomicile = DB::table('rencontres')->where([
+            ['equipe_domicile' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis]
+        ])->sum('but_exterieur');
+
+        $nbPrisExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis]
+        ])->sum('but_domicile');
+
+        $nbPrisTot = $nbPrisDomicile  +$nbPrisExterieur;
+
+        /***** BUTS DOMICILES *****/
+
+        $nbButDomicile = DB::table('rencontres')->where([
+            ['equipe_domicile', '=', $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis]
+        ])->sum('but_domicile');
+
+
+        /***** BUTS EXTERIEURS *****/
+        $nbButExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis]
+            ])->sum('but_exterieur');
+
+        /***** BUTS TOTALS *****/
+        $nbButTot = $nbButDomicile + $nbButExterieur;
+
+        /****Matchs gagnes domicile ***/
+        $nbMatchWinDom = DB::table('rencontres')->where([
+         ['equipe_domicile' , '=' , $clubChoisis->id_club],
+         ['annee' , '=' , $anneechoisis],
+         ['but_domicile' , '>' , 'but_exterieur']
+        ])->count();
+
+
+        /****Matchs gagnes exterieur***/
+        $nbMatchWinExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis],
+            ['but_domicile' , '<' , 'but_exterieur']
+        ])->count();
+
+        /*****Matchs gagnes totals***/
+        $nbVictoire = $nbMatchWinDom  + $nbMatchWinExterieur;
+
+
+        /*****Matchs perdus domicile***/
+        $nbMatchDefDom = DB::table('rencontres')->where([
+            ['equipe_domicile' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis],
+            ['but_domicile' , '<' , 'but_exterieur']
+        ])->count();
+
+
+        /*****Matchs perdus exterieurs***/
+        $nbMatchDefExterieur= DB::table('rencontres')->where([
+            ['equipe_domicile' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis],
+            ['but_domicile' , '>' , 'but_exterieur']
+        ])->count();
+
+        /*****Matchs perdus totals***/
+        $nbDefaite  = $nbMatchDefDom + $nbMatchDefExterieur;
+
+        /*********Matchs nuls domicile****/
+        $nbMatchNulDom = DB::table('rencontres')->where([
+            ['equipe_domicile' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis],
+            ['but_domicile' , '=' , 'but_exterieur']
+        ])->count();
+
+        $nbMatchNulExterieur = DB::table('rencontres')->where([
+            ['equipe_exterieur' , '=' , $clubChoisis->id_club],
+            ['annee' , '=' , $anneechoisis],
+            ['but_domicile' , '=' , 'but_exterieur']
+        ])->count();
+
+        $nbNul = $nbMatchNulDom + $nbMatchNulExterieur;
+
 
 
 
@@ -138,7 +229,24 @@ class SelectTeamController extends Controller
         return view('statEquipe', [
             'clubChoisis' => $clubChoisis,
             'rencontres' => $rencontres,
-            'clubAdverse' => $clubAdverse
+            'clubAdverse' => $clubAdverse,
+            'nbButTot' => $nbButTot,
+            'nbButDomicile' => $nbButDomicile,
+            'nbButExterieur' => $nbButExterieur,
+            'nbPrisExterieur' => $nbPrisExterieur,
+            'nbPrisDomicile' => $nbPrisDomicile,
+            'nbPrisTot' => $nbPrisTot,
+            'nbVictoire' => $nbVictoire,
+            'nbMatchWinExterieur' => $nbMatchWinExterieur,
+            'nbMatchWinDom' => $nbMatchWinDom,
+            'nbMatchDefDom' => $nbMatchDefDom,
+            'nbMatchDefExterieur' => $nbMatchDefExterieur,
+            'nbDefaite' => $nbDefaite,
+            'nbMatchNulDom' => $nbMatchNulDom,
+            'nbMatchNulExterieur' => $nbMatchNulExterieur,
+            'nbNul' => $nbNul,
+            'anneechoisis' =>$anneechoisis,
+            'choixAnnee' => $choixAnnee,
 
         ]);
     }

@@ -50,10 +50,10 @@
                         <?php if(!empty($rencontres)) {
                             foreach ($rencontres as $objMatch) { ?>
                                 <div class="row dateMatch">
-                                    <div class="col-md-2 text-left">
+                                    <div class="col-md-2 text-center">
                                         <?php echo $objMatch->date;?>
                                     </div>
-                                    <div class="col-md-10 text-center">
+                                    <div class="col-md-8 text-center">
                                         <ul class="list-inline">
                                             <li>{{ HTML::image($clubDomicile->url_club, 'Logo '.$clubDomicile->nom_club, array('class' => 'logo-club-32')) }}</li>
                                             <li><?php echo $objMatch->but_domicile.' - '.$objMatch->but_exterieur;?></li>

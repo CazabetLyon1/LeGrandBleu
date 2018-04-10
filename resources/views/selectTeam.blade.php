@@ -77,7 +77,7 @@
 
         </div>
         <div class="col-md-12 text-center" id="boutonValiderSimulation">
-            <a class="btn btn-success" id="validerSimulation" role="button">Commencer la simulation</a>
+            <a  class="btn btn-success"  id="validerSimulation" role="button">Rechercher cette équipe</a>
         </div>
     </div>
 @endsection

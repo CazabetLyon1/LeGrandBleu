@@ -8,7 +8,8 @@ $('document').ready(function() {
 
         $urlEqu = $('#carouselClubExt .active').attr('id');
 
-        document.location.href = 'statEquipe/' + $urlEqu;
+
+        document.location.href = 'statEquipe/' + $urlEqu +  '/2018';
     });
 
     $('#carouselPaysDom #France').parent().addClass('active');
@@ -20,7 +21,7 @@ $('document').ready(function() {
     $('#carouselPaysDom .carousel-control').click(function() {
         setTimeout(function(){
 
-            $pays = $('#carouselPaysDom .active p').text();
+            $pays = $('#carouselPaysDom .active p').text()
             //console.log($pays);
 
             requeteAjaxChoixClub('#carouselPaysDom', '#carouselClubDom');
@@ -52,7 +53,7 @@ $('document').ready(function() {
                         '<div class="item" id="' + value.url_nom + '">' +
                         '<img class="logo-club" src="' + value.url_club + '">' +
                         //'<img class="logo-club" src="2Weeks_Images/Clubs' + value.pays + '/' + value.url_club + '.png">' +
-                        '<p>' + value.nom_club + '</p>' +
+                        '<p>' + value.nom_club +  '</p>' +
                         '</div>'
                     );
 
@@ -60,7 +61,7 @@ $('document').ready(function() {
                         $($carousel2 + ' .carousel-inner').append(
                             '<div class="item active" id="' + value.url_nom + '">' +
                             '<img class="logo-club" src="' + value.url_club + '">' +
-                            '<p>' + value.nom_club + '</p>' +
+                            '<p>' + value.nom_club +  '</p>' +
                             '</div>'
                         );
                     }
