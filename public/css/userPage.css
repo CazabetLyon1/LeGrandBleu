@@ -103,6 +103,9 @@
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
 }
+.block-title{
+    border-bottom: 1px solid white;
+}
 .logo-favorite-team:hover:after{
     opacity: 1;
     cursor: pointer;
