@@ -105,7 +105,9 @@
 }
 .block-title{
     border-bottom: 1px solid white;
+    
 }
+
 .logo-favorite-team:hover:after{
     opacity: 1;
     cursor: pointer;
