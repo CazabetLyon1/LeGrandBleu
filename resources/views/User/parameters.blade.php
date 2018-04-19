@@ -8,6 +8,7 @@
 @endsection
 
 @section('scripts')
+
 @endsection
 
 @section('container')
@@ -68,45 +69,45 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button class="boutton_option sm-OrkneyLight" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="boutton_option sm-OrkneyLight" type="button" data-toggle="collapse" data-target="#collapsepassword" aria-expanded="false" aria-controls="collapsepassword">
                                     Mot de passe
                                 </button>
-                                <div class="collapse" id="collapseExample">
-                                <div class="param_form_containers{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                                    <label  for="param_input_old_password"></label>
-                                    <input type="password" name="old_password" id="param_input_old_password" value="" placeholder="Ancien mot de passe">
-                                    @if ($errors->has('old_password'))
-                                        <span class="error-block">
-                                            <strong>{{ $errors->first('old_password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                                <div class="collapse" id="collapsepassword">
+                                    <div class="param_form_containers{{ $errors->has('old_password') ? ' has-error' : '' }}">
+                                        <label  for="param_input_old_password"></label>
+                                        <input type="password" name="old_password" id="param_input_old_password" value="" placeholder="Ancien mot de passe">
+                                        @if ($errors->has('old_password'))
+                                            <span class="error-block">
+                                                <strong>{{ $errors->first('old_password') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
 
-                                <div class="param_form_containers{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label  for="param_input_password"></label>
-                                    <input type="password" name="password" id="param_input_password" placeholder="nouveau mot de passe">
-                                    @if ($errors->has('password'))
-                                        <span class="error-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                    @if(session()->has('success'))
-                                        <div class="success-block">
-                                            {{ session()->get('success') }}
-                                        </div>
-                                    @endif
-                                </div>
+                                    <div class="param_form_containers{{ $errors->has('password') ? ' has-error' : '' }}">
+                                        <label  for="param_input_password"></label>
+                                        <input type="password" name="password" id="param_input_password" placeholder="nouveau mot de passe">
+                                        @if ($errors->has('password'))
+                                            <span class="error-block">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
+                                        @if(session()->has('success'))
+                                            <div class="success-block">
+                                                {{ session()->get('success') }}
+                                            </div>
+                                        @endif
+                                    </div>
 
-                                <div class="param_form_containers{{ $errors->has('password') ? ' has-error' : '' }}"">
-                                    <label  for="param_input_passwordVerify"></label>
-                                    <input type="password" name="password_confirmation" id="param_input_passwordVerify" placeholder="confirmation mot de passe">
-                                    @if ($errors->has('password'))
-                                        <span class="error-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="param_form_containers{{ $errors->has('password') ? ' has-error' : '' }}">
+                                        <label  for="param_input_passwordVerify"></label>
+                                        <input type="password" name="password_confirmation" id="param_input_passwordVerify" placeholder="confirmation mot de passe">
+                                        @if ($errors->has('password'))
+                                            <span class="error-block">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
-                        </div>
 
                                 <button type="submit">Register</button>
                             </form>
@@ -114,6 +115,42 @@
                         </div>
 
                     </div>
+                </div>
+
+
+                <div class="col-lg-6 mrg-auto ">
+
+                    <div class="block-section block">
+                        <div class="block-title">
+                            <div class="block-title-icon suppr-icon"></div>
+                            <p class="block-title-text">Supprimer Compte</p>
+                        </div>
+                        <div class="block-content">
+                            <button type="submit" class="Supprimer_Compte"  data-toggle="modal" data-target="#ModalDelete">
+                               {{--{{ route('user-delete', $user->login) }}--}}Supprimer mon Compte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="ModalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalDeleteLabel">Suppression du compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Êtes vous sur de vouloir supprimer de manière définitive votre compte ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary"><a href="{{ route('user-delete', $user->login) }}">Supprimer mon Compte</a></button>
                 </div>
             </div>
         </div>

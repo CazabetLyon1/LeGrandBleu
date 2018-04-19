@@ -219,8 +219,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($usr_login)
     {
-        //
+        $user = User::where("login", "=", $usr_login)->first();
+        $user->delete();
+        return redirect('login');
     }
 }
