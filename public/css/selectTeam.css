@@ -1,0 +1,63 @@
+.container-perso {
+    margin-top : 90px;
+}
+
+.block {
+    margin: 0px;
+}
+
+.col-md-12 h1, .col-md-6 h1 {
+    color: white;
+    text-shadow: var(--shadow-neon);
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size : 45px;
+}
+
+.nom-club-result h1 {
+    color: white;
+    text-shadow: var(--shadow-neon);
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size : 15px;
+}
+
+.col-md-6 h4 {
+    color: white;
+    font-family:"Orkney Medium", Roboto, sans-serif;
+}
+
+* {
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    color: white;
+    margin: 5px;
+}
+
+.logo-club {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+}
+
+.logo-club-titreResult {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+}
+
+.carousel-control.right, .carousel-control.left {
+    background-image: none;
+}
+
+#boutonValiderSimulation {
+    margin: 20px;
+}
+
+.noUpper {
+    text-transform: none;
+}
+

@@ -1,0 +1,189 @@
+.container-perso {
+    margin-top : 90px;
+}
+
+.nom-club-result {
+    color: white;
+    text-shadow: var(--shadow-neon);
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size : 15px;
+}
+
+h2 {
+    color: white;
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    font-size: 15px;
+}
+
+* {
+    font-family:"Orkney Medium", Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    color: white;
+        margin: 5px;
+}
+
+.nameAl {
+    color: white;
+    text-shadow: var(--shadow-neon);
+}
+
+.infoTeam {
+    margin-top: 60px;
+}
+
+.logo-club-title {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+}
+
+.iconcustom{
+    font-size: 40px;
+}
+
+.logo-club-32 {
+    width: 32px;
+    height: 32px;
+}
+
+.dateMatch {
+    margin-bottom: 5px;
+}
+
+.dateMatch1 {
+    margin-bottom: 30px;
+}
+
+.chartLoiDePoisson {
+    margin-top: 10px;
+}
+
+.noUpper {
+    text-transform: none;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.statTeam {
+    margin-top: 50px;
+}
+
+.nomclubperso{
+    color: white;
+}
+
+
+
+
+.container section {
+    height: 100%;
+    background: #449df5;
+    color: #fff;
+    text-align: center;
+
+}
+
+.container section label {
+    position : initial;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.5em;
+    bottom: 0;
+}
+
+.container section label:nth-child(odd) { right: 120px; }
+
+.container section label:nth-child(even) { left: 120px; }
+
+.container section > i {
+    font-size: 6em !important;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+input[type="radio"] { display: none; }
+
+input[type="radio"]:checked + section { display: block; }
+
+
+a.animated-button:link, a.animated-button:visited {
+    position: relative;
+    display: block;
+    margin: 30px auto 0;
+    padding: 14px 15px;
+    color: #fff;
+    font-size:14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: .08em;
+    border-radius: 0;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+    content: "";
+    position: absolute;
+    height: 0%;
+    left: 50%;
+    top: 50%;
+    width: 150%;
+    z-index: -1;
+    -webkit-transition: all 0.75s ease 0s;
+    -moz-transition: all 0.75s ease 0s;
+    -o-transition: all 0.75s ease 0s;
+    transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+    color: #FFF;
+    text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+    height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+    position: relative;
+    display: block;
+    margin: 30px auto 0;
+    padding: 14px 15px;
+    color: #fff;
+    font-size:14px;
+    border-radius: 0;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: .08em;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+
+}
+
+a.animated-button.victoria-one {
+    border: 2px solid #D24D57;
+}
+a.animated-button.victoria-one:after {
+    background: #D24D57;
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+    -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+    transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+
+
+
+
