@@ -19,10 +19,10 @@
     position: relative;
     display: block;
 
-    border-bottom: 2px solid white;
-    -webkit-border-bottom: 2px solid white;
-    -moz-border-bottom: 2px solid white;
-
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-color: var(--bleu-fond-50);
 }
 
 .param_form_containers:hover{

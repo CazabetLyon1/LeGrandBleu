@@ -21,7 +21,7 @@ body {
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
-    background: transparent url('../STATS&CO/Auth/AuthWall.jpg')no-repeat 50% 50% / cover;
+    /*background: transparent url('../STATS&CO/Auth/AuthWall.jpg')no-repeat 50% 50% / cover;*/
     z-index: 1;
     opacity: .75;
 }
@@ -34,9 +34,9 @@ body {
     width:max-content;
     height:max-content;
     margin:auto;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 
     box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0 20px 100px 10px rgba(0,0,0,0.75);
@@ -54,7 +54,7 @@ body {
     height:max-content;
     margin:0;
     background-color: rgba(0, 0, 0, .5);
-    padding:5px;
+    padding: 25px;
 }
 #auth_cards_container .body{
     display: block;
@@ -121,10 +121,11 @@ body {
     position: relative;
     display: block;
 
-    border-bottom: 2px solid white;
-    -webkit-border-bottom: 2px solid white;
-    -moz-border-bottom: 2px solid white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 
+    background-color: var(--bleu-fond-50);
 }
 
 .connect_cards_form_containers:hover{
@@ -236,7 +237,7 @@ button[type='submit']{
 }
 
 #connection-section{
-    background-color: var(--bleu-fond);
+    /*background-color: var(--bleu-fond);*/
     padding-top: 0;
 }
 /*https://www.flaticon.com/packs/interface-46*/
