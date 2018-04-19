@@ -36,8 +36,13 @@
                             <div class="account-info">
                                 <div class="header popUpSearch_activator @if(Auth::id() == $user->id){{'user-can-modif'}}@endif" data-toggle="modal" data-target="#myModal" style="background: #070025  url('{{ asset($user->avatar_url) }}')no-repeat 50% 50% / cover;"></div>
                                 <div class="body">
-                                    <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
-                                    <p class="user_Birthday sm-OrkneyLight">Anniversaire : {!! $user->birthday!!}</p>
+                                    <div id="account-nm-prm">
+                                        <p class="user_name xl-OrkneyBold">{!! $user->first_name.' '.$user->last_name !!}</p>
+                                        @if(Auth::id() == $user->id)
+                                            <a class="param" href="{{ route('user-parameters',['usr_login' => Auth::user()->login]) }}" ></a>
+                                        @endif
+                                    </div>
+                                    <p class="user_Birthday sm-OrkneyLight"><span></span>Anniversaire : {!! $user->birthday!!}</p>
                                     <p class="user_email">{!! $user->email !!}</p>
                                 </div>
                                 {{--<div class="account-nav">

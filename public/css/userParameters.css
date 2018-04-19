@@ -1,0 +1,129 @@
+
+.param_darkbackground{
+    background-color: var(--bleu-fond-50);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+.param_form{
+    display: grid;
+    position: relative;
+}
+.param_form_containers{
+    height: 42px;
+    margin: 10px 5px;
+    clear: both;
+    position: relative;
+    display: block;
+
+    border-bottom: 2px solid white;
+    -webkit-border-bottom: 2px solid white;
+    -moz-border-bottom: 2px solid white;
+
+}
+
+.param_form_containers:hover{
+    background-color: var(--bleu-fond-50);
+}
+
+.param_form_containers label{
+    width: 42px;
+    height: 42px;
+    float: left;
+    position: relative;
+    display: block;
+
+    top: 0;
+    left: 0;
+}
+.param_form_containers input{
+    width: calc( 100% - 42px );
+    height: 42px;
+    float: left;
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    color: white;
+
+    background-color: transparent;
+    border: none;
+    -webkit-border: none;
+    -moz-border: none;
+    outline: none;
+
+}
+
+.param_form button{
+    position: relative;
+    display: block;
+
+    width: 150px;
+    height: 42px;
+
+    background-color: transparent;
+    color: white;
+    margin: 10px auto;
+
+    border: 2px solid white;
+    outline: none;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    transition: ease-in-out .25s;
+    -webkit-transition: ease-in-out .25s;
+    -moz-transition: ease-in-out .25s;
+    -o-transition: ease-in-out .25s;
+    cursor: pointer;
+}
+.param_form button:hover{
+    color:  rgba(12, 36, 97,1.0);
+    background-color: white;
+
+    transition: ease-in-out .25s;
+    -webkit-transition: ease-in-out .25s;
+    -moz-transition: ease-in-out .25s;
+    -o-transition: ease-in-out .25s;
+}
+
+label[for="param_input_first_name"], label[for="param_input_last_name"]{
+    background : transparent url('../STATS&CO/Auth/people.png') no-repeat 50% 50% / 24px;
+    opacity: 0.5;
+}
+label[for="param_input_email"]{
+    background : transparent url('../STATS&CO/Auth/envelope.png') no-repeat 50% 50% / 16px;
+    opacity: 0.5;
+}
+label[for="param_input_birthday"]{
+    background : transparent url('../STATS&CO/Auth/calendar.png') no-repeat 50% 50% / 24px;
+    opacity: 0.5;
+}
+label[for="param_input_password"], label[for="param_input_old_password"], label[for="param_input_passwordVerify"]{
+    background : transparent url('../STATS&CO/Auth/locked (1).png') no-repeat 50% 50% / 24px;
+    opacity: 0.5;
+}
+button[type='submit']{
+    font-family: "Orkney Light", Roboto, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+input:disabled {
+    opacity:0.5;
+    pointer-events: none;
+}
+button:focus {outline:none;}
+
+.boutton_option{
+    border: 2px solid transparent !important;
+    width:100% !important;
+    text-align: center;
+}
+.boutton_option:hover{
+    background-color: transparent !important;
+    text-decoration: underline;
+    color: white!important;
+}

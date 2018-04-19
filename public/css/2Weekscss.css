@@ -28,6 +28,7 @@ p{
     --rouge-error-75: rgba(169, 66, 68, .75);
     --rouge-error-50: rgba(169, 66, 68, .5);
     --rouge-error-25: rgba(169, 66, 68, .25);
+    --vert-success:  rgb(39, 174, 96);
 
     --2W-cubic: cubic-bezier(1,.17,.47,1.2);
     --2W-transition-35: .35s var(--2W-cubic);
@@ -188,16 +189,24 @@ html,body{
 .has-error{
     background-color: var(--rouge-error-50);
 }
-.error-block{
+.error-block, .success-block{
     position: relative;
     display: block;
     width:100%;
-
 }
 .error-block strong{
     top: 45px;
     font-size: 10px;
     color: var(--rouge-error);
+    width: 100%;
+    left: 0;
+    position: absolute;
+}
+
+.success-block strong{
+    top: 45px;
+    font-size: 10px;
+    color: var(--vert-success);
     width: 100%;
     left: 0;
     position: absolute;
@@ -314,4 +323,7 @@ html,body{
     filter: var(--shadow-bg-icons);
     margin-bottom: 25px;
 }
->>>>>>> master
+.mrg-auto{
+    margin: auto;
+    float: initial;
+}

@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Poisson;
 
 class UserController extends Controller
@@ -60,6 +62,12 @@ class UserController extends Controller
 
             return view('User.user', compact('user'));
         }
+    }
+
+    public function parameters($usr_login){
+        $user = DB::table('users')->where('login','like',$usr_login)->first();
+        //dd($user);
+        return view('User.parameters', compact('user'));
     }
 
     public function changeUserImage(Request $request)
@@ -161,9 +169,48 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public static function admin_credential_rules(array $data)
     {
-        //
+        $messages = [
+            'old_password.required' => 'Please enter current password',
+            'password.required' => 'Please enter password',
+        ];
+
+        $validator = Validator::make($data, [
+            'old_password' => 'required',
+            'password' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
+        ], $messages);
+
+        return $validator;
+    }
+    public function update(Request $request, $usr_login)
+    {
+
+        if(Auth::Check()) {
+            $user = User::where("login", "=", $usr_login)->first();
+            $user->first_name = $request['first_name'];
+            $user->last_name = $request['last_name'];
+            $user->birthday = $request['birthday'];
+            $message = [];
+            if ($request['old_password'] != "") {
+                $validator = $this->admin_credential_rules($request->All());
+                if (!$validator->fails()) {
+                    $current_password = $user->password;
+                    if (password_verify($request['old_password'], $current_password)) {
+                        $user->password = bcrypt($request->password);
+                    }else{
+                        $error = array('old_password' => 'Please enter correct current password');
+                        return Redirect()->back()->withErrors($error)->withInput();
+                    }
+                }else {
+                    return Redirect()->back()->withErrors($validator)->withInput();
+                }
+            }
+            $user->update();
+
+        }
+        return redirect()->back()->with("update","compte mis à jour");
     }
 
     /**
