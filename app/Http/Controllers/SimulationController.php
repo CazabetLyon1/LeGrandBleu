@@ -131,7 +131,12 @@ class SimulationController extends Controller
                 $tabProbFinal[] = ($loiPoisson['Domicile']['buts'][$i]) * ($loiPoisson['Exterieur']['buts'][$j]) / 100;
             }
         }
-
+        $tabProbFinal2 = array();
+        for ($i = 0;$i <= 5; $i++) {
+            for($j = 0; $j <= 5; $j++) {
+                $tabProbFinal2[$i][$j] = ($loiPoisson['Domicile']['buts'][$i]) * ($loiPoisson['Exterieur']['buts'][$j]) / 100;
+            }
+        }
         /***** CHART 1 *****/
         $chart1 = new SampleChart;
         $chart1->labels(['0 but','1 but','2 buts','3 buts','4 buts','5 buts'])
@@ -155,6 +160,7 @@ class SimulationController extends Controller
             'rencontres' => $rencontres,
             'loiPoisson' => $loiPoisson,
             'tabProbFinal' => $tabProbFinal,
+            'tabProbFinal2' => $tabProbFinal2,
             'chart1' => $chart1
         ]);
     }

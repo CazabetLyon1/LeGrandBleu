@@ -7,6 +7,7 @@ $('document').ready(function() {
     $XEx = [0,1,2,3,4,5];
     $YEx = [0,1,2,3,4,5];
     $REx = tab;
+    $REx2 = tab2;
     $BackgrEx = ["#ffffff", "#000000", "#ff5555", "#000000", "#ffffff" ];
     $labelEx = [];
     indice = 0;
@@ -43,8 +44,41 @@ $('document').ready(function() {
             }
         }
     };
+    var datasetss = [];
+    for (y = 5; y >= 0; y--) {
+        $data2 = {
+            label : y,
+            data: [$REx2[y][0].toFixed(2)*100,$REx2[y][1].toFixed(2)*100,$REx2[y][2].toFixed(2)*100,$REx2[y][3].toFixed(2)*100,$REx2[y][4].toFixed(2)*100,$REx2[y][5].toFixed(2)*100]
+        }
+        datasetss.push($data2);
 
-    while(indice <= 35) {
+    }
+
+    var heatData = {
+        labels : ['0', '1', '2', '3', '4', '5'],
+        datasets : datasetss
+    };
+
+    var options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+
+    console.log(heatData);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var newChart = new Chart(ctx).HeatMap(heatData,options);
+
+    /*while(indice <= 35) {
+
+
+
+
         for (y = 0; y <= 5; y++) {
             for (x = 0; x <= 5; x++) {
                 $data = {
@@ -70,10 +104,10 @@ $('document').ready(function() {
                 options.data.datasets.push($data);
             }
         }
-    }
+    }*/
 
     //console.log(options);
 
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, options);
+    /*var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, options);*/
 });

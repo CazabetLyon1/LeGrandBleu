@@ -131,9 +131,11 @@
     <script>
         var token = '{{ Session::token() }}';
         var tab = <?php echo json_encode($tabProbFinal); ?>;
+        var tab2 = <?php echo json_encode($tabProbFinal2); ?>;
     </script>
 
     {!! $chart1->script() !!}
     {!! Html::script('js/simulationResultat.js') !!}
+    {!! Html::script('js/HeatMap/Chart.HeatMap.S.js') !!}
 
 @endsection

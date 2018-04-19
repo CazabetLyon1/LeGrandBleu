@@ -66,4 +66,8 @@ p {
     margin-top: 50px;
 }
 
-
+#myChart{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
