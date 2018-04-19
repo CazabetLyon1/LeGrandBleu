@@ -109,10 +109,10 @@ class SelectTeamController extends Controller
             ])
             ->first();
 
-        $choixAnnee = DB::table('rencontres->annee')
-            ->where([
-            ])
-            ->get();
+        $choixAnnee = DB::table('rencontres')
+            ->select('annee')
+            ->groupBy('annee')
+            ->pluck('annee');
 
         $clubAdverse = DB::select('SELECT clubs.* 
         FROM clubs 
@@ -157,6 +157,7 @@ class SelectTeamController extends Controller
             ['equipe_domicile', '=', $clubChoisis->id_club],
             ['annee' , '=' , $anneechoisis]
         ])->sum('but_domicile');
+
 
 
         /***** BUTS EXTERIEURS *****/

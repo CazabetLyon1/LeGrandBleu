@@ -20,6 +20,7 @@
         <div class="row block">
              <div class="col-md-3 col-xs-6 text-right">
                 <h1 class="nom-club-result text-center"><?php echo $clubChoisis->nom_club;?></h1>
+
                 {{ HTML::image($clubChoisis->url_club, 'Logo '.$clubChoisis->nom_club, array('class' => 'logo-club-title')) }}
             </div>
             <div class="col-md-3">
@@ -128,7 +129,7 @@
                 </div>
                 <?php } ?>
             </div>
-                <div class = "col-md-6 text-center">
+                <div class = "col-md-5 text-center">
                     <div class="row">
                         <div class="col-md-12">
                             <h2><i class="far fa-futbol"></i> Dernieres Saisons</h2>
@@ -136,12 +137,13 @@
                     </div>
                     <div class="row">
                         <?php foreach ($choixAnnee as $annee) { ?>
-                        <div class="item">
-                            <p id="<?php echo $annee;?>"><?php echo $annee;?></p>
+                        <div class="row">
+                            <a href='<?php echo $annee;?>' class="btn  btn-sm animated-button  victoria-one"><?php echo $annee;?></a>
                         </div>
-    <?php } ?>
+                           <?php } ?>
         </div>
     </div>
+
 
 
 
