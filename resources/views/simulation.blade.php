@@ -19,7 +19,7 @@
     <div class="section container-fluid container-perso">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h1 class="visible-md">Simulation de rencontre sportive</h1>
+                <h1 class="hidden-xs   hidden-sm    ">Simulation de rencontre sportive</h1>
                 <p class="noUpper">Choississez les deux équipes qui s'affronteront et cliquez pour commencer la simulation !</p>
             </div>
             <div class="col-md-12 text-center" id="boutonValiderSimulation">

@@ -75,9 +75,10 @@ html,body{
     left:0;
     z-index:999;
     width:100%;
-    height:80px;
+    min-height:80px;
     opacity:1;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,1);
+    overflow: hidden;
 
     box-shadow: 5px 0 25px 3px rgba(0, 0, 0, .5);
     -webkit-box-shadow: 5px 0 25px 3px rgba(0, 0, 0, .5);
@@ -87,6 +88,11 @@ html,body{
     -webkit-transition: var(--2W-transition-35);
     -moz-transition: var(--2W-transition-35);
     -o-transition: var(--2W-transition-35);
+
+}
+
+#nav li{
+    list-style-type:none;
 }
 #nav #nav-account{
     position: relative;
@@ -132,7 +138,7 @@ html,body{
 }
 #nav a{
     position: relative;
-    width:100%;
+    /*width:100%;*/
     height:100%;
     text-decoration: none;
     color: white;
@@ -143,31 +149,43 @@ html,body{
     letter-spacing: 2px;
 
 }
+
+#nav #sandwich{
+    z-index: 9;
+    width:80px;
+    height:80px;
+    display:block;
+    position:absolute;
+    top:0;
+    right: 0;
+
+}
 #nav-account #nav-account-name a{
     font-size:16.5px;
     line-height: 16.5px;
 }
-#nav #nav-items-links{
+#nav .nav-items-links{
     position: relative;
     display: block;
     width:auto;
     height:100%;
     float: right;
-    padding: 25px;
+    padding: 10px 25px;
+    overflow: hidden;
 }
-#nav-items-links a{
+.nav-items-links a{
     margin-left:25px;
     width: auto;
     float: right;
 }
-#nav-items-links #nav-Logo{
+.nav-items-links #nav-Logo{
     font-family: "neoneon", "Orkney Medium", Roboto, sans-serif;
     font-size:33px;
     text-shadow: var(--shadow-neon-logo);
     text-transform: uppercase;
 
 }
-#nav-items-links #nav-Logo span{
+.nav-items-links #nav-Logo span{
     font-size:15px;
 }
 #nav-exit{
@@ -327,3 +345,48 @@ html,body{
     margin: auto;
     float: initial;
 }
+
+@media (max-width: 854px) {
+    #nav a{
+        font-size: 9px;
+    }
+}
+@media (max-width: 767px){
+    #nav a{
+        width: 100%!important;
+
+    }
+
+}
+
+@media (max-width:844px) {
+
+
+    #nav{
+        width:auto;
+        height:auto;
+        display:block;
+    }
+
+    #nav li{
+        display: inline;
+        width: 100%;
+        height: 20px;
+        position: relative;
+
+    }
+
+    #nav .nav-items-links{
+        position:relative;
+        display:block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        text-align: center;
+    }
+
+
+    
+}
+
+
