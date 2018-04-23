@@ -76,6 +76,9 @@
 
         <div class="collapse navbar-collapse nav-items-links eclipsia" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-items">
+                    <a id="nav-Logo" href="{{ url('/') }}" class="hidden-md hidden-sm hidden-xs ">STATS&CO<span>&#169;</span></a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url('/simulation') }}">Simulation <span class="sr-only">(current)</span></a>
                 </li>
