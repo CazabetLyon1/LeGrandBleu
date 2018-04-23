@@ -139,7 +139,7 @@ html,body{
 #nav a{
     position: relative;
     /*width:100%;*/
-    height:100%;
+    height:40px;
     text-decoration: none;
     color: white;
     font-family:"Orkney Medium", Roboto, sans-serif;
@@ -160,6 +160,11 @@ html,body{
     right: 0;
 
 }
+
+#sandwich{
+    background-image: ;
+}
+
 #nav-account #nav-account-name a{
     font-size:16.5px;
     line-height: 16.5px;

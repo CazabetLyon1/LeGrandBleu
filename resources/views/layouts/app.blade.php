@@ -71,7 +71,7 @@
             </div>
         </div>
         <button id="sandwich" class="navbar-toggler hidden-lg hidden-md hidden-sm" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
         </button>
 
         <div class="collapse navbar-collapse nav-items-links eclipsia" id="navbarSupportedContent">
@@ -82,11 +82,14 @@
                 <li class="nav-item">
                     <a href="{{ url('/selectTeam') }}">Equipes</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="{{ url('/selectTeam') }}">Equipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                <li class="nav-items-links">
+                @guest
+                @else
+                    <a id="nav-exit" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @endguest
                 </li>
             </ul>
 
